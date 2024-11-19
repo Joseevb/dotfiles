@@ -1,0 +1,7 @@
+[user]
+	name = Joseevb
+	email = joseevasquez04@gmail.com
+[init]
+	defaultBranch = main
+[safe]
+	directory = /opt/lampp/htdocs/login
