@@ -108,9 +108,30 @@ if [ ! -d "$HOME/miniconda3" ]; then
     rm ~/miniconda.sh
 fi
 
+# Install Yazi (file manager) from GitHub
+echo "Installing Yazi (file manager)..."
+
+# Check if a pre-built binary is available
+if ! command -v yazi &> /dev/null; then
+    echo "Yazi not found in system. Installing from source..."
+    # Clone the yazi repository
+    git clone https://github.com/lotabout/yazi.git ~/yazi
+    cd ~/yazi
+
+    # Build from source
+    echo "Building Yazi from source..."
+    make
+
+    # Install Yazi globally
+    sudo cp target/release/yazi /usr/local/bin/yazi
+    cd ~
+else
+    echo "Yazi is already installed."
+fi
+
 # Stow configuration files
 echo "Stowing configuration files..."
-stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat
+stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi
 
 # TPM Plugin Installation Instructions
 echo "To install Tmux plugins, open Tmux and press: 'prefix + I' (default prefix is Ctrl+b)"
