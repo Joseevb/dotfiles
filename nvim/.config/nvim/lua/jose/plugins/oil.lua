@@ -3,6 +3,7 @@ return {
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
+		default_file_explorer = false,
 		columns = {
 			"icon",
 			"size",

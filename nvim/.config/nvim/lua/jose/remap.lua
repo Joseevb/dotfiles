@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>e", vim.cmd.Oil)
+vim.keymap.set("n", "<leader>e", function()
+	vim.cmd({ cmd = "Oil", args = { "--float" } })
+end)
 vim.keymap.set("n", "<C-c>", vim.cmd.Esc)
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -28,10 +30,10 @@ vim.keymap.set("v", "<C-p>", [["+p]])
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- create basic java program
-vim.keymap.set("n", "<leader>je", ":split | term java -cp .\\bin\\ App <CR>")
-vim.keymap.set("n", "<leader>jc", ":split | term javac -d .\\bin\\ .\\src\\*.java <CR>")
+-- vim.keymap.set("n", "<leader>je", ":split | term java -cp .\\bin\\ App <CR>")
+-- vim.keymap.set("n", "<leader>jc", ":split | term javac -d .\\bin\\ .\\src\\*.java <CR>")
 
-vim.keymap.set("n", "<leader>mj", ":! mkdir .\\bin\\ && mkdir .\\src\\ && type nul > .\\src\\App.java <CR><CR>")
+-- vim.keymap.set("n", "<leader>mj", ":! mkdir .\\bin\\ && mkdir .\\src\\ && type nul > .\\src\\App.java <CR><CR>")
 
 --requires live server to be installed npm i -g live-server
 vim.keymap.set("n", "<leader>ls", ":term live-server . <CR>")
@@ -44,7 +46,7 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("n", "<leader>sa", "ggVG")
 
 -- dadbod sql
-vim.keymap.set("n", "<leader>od", ":DBUI<CR>")
+vim.keymap.set("n", "<leader>od", vim.cmd.DBUI)
 
 -- code actions
 vim.api.nvim_set_keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
