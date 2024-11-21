@@ -110,7 +110,7 @@ fi
 
 # Stow configuration files
 echo "Stowing configuration files..."
-stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server
+stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat
 
 # TPM Plugin Installation Instructions
 echo "To install Tmux plugins, open Tmux and press: 'prefix + I' (default prefix is Ctrl+b)"
