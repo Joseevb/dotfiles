@@ -39,6 +39,10 @@ fi
 
 # Install or update tmux
 sudo apt purge tmux
+sudo apt install libevent-dev
+sudo apt install libncurses5-dev libncursesw5-dev
+sudo apt install bison -y
+sudo apt install byacc -y
 curl -s https://api.github.com/repos/tmux/tmux/releases/latest | grep "browser_download_url" | grep "tar.gz" | cut -d '"' -f 4 | xargs curl -LO
 tar -zxf tmux-*.tar.gz
 cd tmux-*/
@@ -150,7 +154,7 @@ stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi prettierd
 # TPM Plugin Installation Instructions
 echo "To install Tmux plugins, open Tmux and press: 'prefix + I' (default prefix is Ctrl+b)"
 
-cd ..
+cd ../../
 rm -rf ./cache/
 
 echo "Setup complete. Please restart your terminal."

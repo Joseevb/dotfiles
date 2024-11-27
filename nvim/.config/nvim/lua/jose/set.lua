@@ -14,6 +14,8 @@ vim.opt.termguicolors = true -- Enable 24-bit RGB color in the terminal
 
 vim.opt.updatetime = 50 -- Faster updates for plugins like CursorHold events
 
+vim.opt.mouse = "a"
+
 -- ================================
 -- Tabs and Indentation
 -- ================================
