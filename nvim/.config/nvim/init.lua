@@ -19,8 +19,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 --   command = 'Prettier'
 -- })
 
-vim.o.foldmethod = "syntax"
-
 -- Enable auto reloading of files changed outside of Neovim
 vim.opt.autoread = true
 -- Check for changes in files when gaining focus or switching buffers
