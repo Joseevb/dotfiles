@@ -138,10 +138,11 @@ export PATH="$PATH:$HOME/.local/bin"
 export tmux="tmux -u"
 
 # Oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/themes/catppuccin_macchiato.omp.json)"
 
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+alias fzf="fzf --tmux"
 
 # Mason bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
@@ -166,6 +167,9 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# Prettierd
+export PRETTIERD_DEFAULT_CONFIG=~/.config/prettierd/.prettierrc.json
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/jose/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -186,3 +190,5 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -3,11 +3,15 @@
 # Update and install required packages
 echo "Updating package lists..."
 sudo apt update
-sudo apt install -y git zsh tmux fd-find fzf openjdk-17-jdk fuse bat
+sudo apt install -y git zsh fd-find openjdk-17-jdk fuse bat
+
+# Create cache directory and cd into it
+mkdir cache
+cd cache
 
 # Install Neovim AppImage
 echo "Downloading the latest Neovim AppImage to the home directory..."
-curl -Lo ~/nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+curl -Lo ./nvim.appimage https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 
 # Make the AppImage executable
 chmod u+x ~/nvim.appimage
@@ -23,6 +27,23 @@ else
     echo "Failed to install Neovim."
     exit 1
 fi
+
+# Install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install fzf
+if ! command -v fzf -v &> /dev/null; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+fi
+
+# Install or update tmux
+sudo apt purge tmux
+curl -s https://api.github.com/repos/tmux/tmux/releases/latest | grep "browser_download_url" | grep "tar.gz" | cut -d '"' -f 4 | xargs curl -LO
+tar -zxf tmux-*.tar.gz
+cd tmux-*/
+./configure
+make && sudo make install
 
 # Install nvm
 if ! command -v nvm -v &> /dev/null; then
@@ -114,26 +135,22 @@ echo "Installing Yazi (file manager)..."
 # Check if a pre-built binary is available
 if ! command -v yazi &> /dev/null; then
     echo "Yazi not found in system. Installing from source..."
-    # Clone the yazi repository
-    git clone https://github.com/lotabout/yazi.git ~/yazi
-    cd ~/yazi
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    rustup update
 
-    # Build from source
-    echo "Building Yazi from source..."
-    make
-
-    # Install Yazi globally
-    sudo cp target/release/yazi /usr/local/bin/yazi
-    cd ~
+    cargo install --locked yazi-fm yazi-cli
 else
     echo "Yazi is already installed."
 fi
 
 # Stow configuration files
 echo "Stowing configuration files..."
-stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi
+stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi prettierd
 
 # TPM Plugin Installation Instructions
 echo "To install Tmux plugins, open Tmux and press: 'prefix + I' (default prefix is Ctrl+b)"
+
+cd ..
+rm -rf ./cache/
 
 echo "Setup complete. Please restart your terminal."
