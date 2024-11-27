@@ -40,7 +40,15 @@ return {
 					on_attach = on_attach,
 					capabilities = capabilities,
 					cmd = { "emmet-language-server", "--stdio" },
-					filetypes = { "html", "css", "javascript", "javascriptreact", "php" },
+					filetypes = {
+						"html",
+						"css",
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+						"php",
+					},
 					init_options = {
 						preferences = {
 							includeLanguages = {
