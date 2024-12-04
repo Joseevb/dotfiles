@@ -17,6 +17,7 @@ return {
 				markdown = { "prettierd", "prettier", stop_after_first = true },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				php = { "prettier", "pretty-php" },
 				-- java = { "google-java-format" },
 			},
 			format_after_save = {
@@ -26,11 +27,11 @@ return {
 			},
 		})
 
-		conform.formatters.prettier = {
-			prepend_args = function()
-				return { "--use-tabs", "true", "--tab-width", "4" }
-			end,
-		}
+		-- conform.formatters.prettier = {
+		-- 	prepend_args = function()
+		-- 		return { "--use-tabs", "true", "--tab-width", "4" }
+		-- 	end,
+		-- }
 
 		conform.formatters.google_java_format = {
 			prepend_args = function()

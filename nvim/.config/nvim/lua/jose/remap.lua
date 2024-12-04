@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>e", function()
 	vim.cmd({ cmd = "Oil", args = { "--float" } })
 end, { desc = "Open Oil file explorer" })
 
-vim.keymap.set("n", "<C-c>", vim.cmd.Esc, { desc = "Escape key alternative" })
+vim.keymap.set("n", "<C-c>", "<Esc>", { desc = "Escape key alternative" })
 
 -- Line Movement in Visual Mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down in visual mode" })
@@ -54,6 +54,22 @@ vim.keymap.set("n", "<leader>bn", vim.cmd.bnext, { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bp", vim.cmd.bprev, { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { desc = "Delete current buffer" })
 vim.keymap.set("n", "<leader>bl", vim.cmd.ls, { desc = "List all buffers" })
+-- Function to go to a specific buffer by number
+local function goto_buffer()
+	vim.ui.input({ prompt = "Enter buffer number: " }, function(input)
+		if input then
+			local buffer_number = tonumber(input)
+			if buffer_number and vim.fn.bufexists(buffer_number) == 1 then
+				vim.cmd("buffer " .. buffer_number)
+			else
+				vim.notify("Invalid buffer number: " .. input, vim.log.levels.ERROR)
+			end
+		end
+	end)
+end
+
+-- Keymap to prompt for buffer number and switch
+vim.keymap.set("n", "<leader>bb", goto_buffer, { desc = "Switch to buffer by number" })
 
 -- ================================
 -- Selection
@@ -104,3 +120,9 @@ vim.keymap.set("n", "<leader>cp", ":cprev<CR>", { desc = "Previous item in quick
 vim.keymap.set("n", "<leader>tr", function()
 	vim.opt.relativenumber = not vim.opt.relativenumber:get()
 end, { desc = "Toggle relative numbers" })
+
+-- ================================
+-- Command history
+-- ================================
+-- Disable `q:` command history window
+vim.keymap.set("n", "q:", "<Nop>", { desc = "Disable command history window" })
