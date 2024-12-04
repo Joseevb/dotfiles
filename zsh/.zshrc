@@ -138,7 +138,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export tmux="tmux -u"
 
 # Oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/themes/catppuccin_macchiato.omp.json)"
 
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -159,8 +159,8 @@ export NVM_DIR="$HOME/.nvm"
 
 # Others
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 
-echo "fpath+=~/.zsh/completions" >> ~/.zshrc
 autoload -U compinit && compinit
 
 # Yazi
@@ -193,10 +193,9 @@ unset __conda_setup
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+fpath+=~/.zsh/completions
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-fpath+=~/.zsh/completions
-fpath+=~/.zsh/completions
