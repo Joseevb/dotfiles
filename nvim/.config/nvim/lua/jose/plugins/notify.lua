@@ -5,6 +5,7 @@ return {
 		timeout = 1000, -- Customize timeout in milliseconds
 		stages = "fade_in_slide_out", -- Animation style
 		top_down = false, -- Notifications stack from bottom to top
+		background_colour = "#1e1e1e", -- Set a custom background color (example: dark gray)
 		on_open = function(win)
 			-- Customize window position for bottom-right corner
 			local win_opts = vim.api.nvim_win_get_config(win)

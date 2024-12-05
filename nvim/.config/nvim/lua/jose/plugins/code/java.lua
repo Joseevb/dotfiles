@@ -137,8 +137,7 @@ return {
 			local bundles = {
 				vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
 			}
-
-			vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/server/*.jar"), "\n"))
+			vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_path .. "/extension/server/*.jar"), "\n"))
 
 			config["init_options"] = {
 				bundles = bundles,
