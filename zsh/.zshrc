@@ -138,7 +138,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export tmux="tmux -u"
 
 # Oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/themes/catppuccin_macchiato.omp.json)"
 
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
