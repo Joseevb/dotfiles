@@ -147,6 +147,11 @@ alias fzf="fzf --tmux"
 # Mason bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
+# Zig bin
+export PATH="$HOME/workspace/bin/zig:$PATH"
+
+export PATH="$HOME/.local/bin/:$PATH"
+
 # JAVA 
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 export PATH=$JAVA_HOME/bin:$PATH

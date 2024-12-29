@@ -1,4 +1,3 @@
--- lspconfig.lua (or wherever you configure LSPs)
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
