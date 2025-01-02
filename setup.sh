@@ -168,7 +168,7 @@ install_yazi() {
 # Function to stow configuration files
 stow_configs() {
     echo "Stowing configuration files..."
-    stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi prettierd
+    stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi prettierd sway waybar
 }
 
 # Main setup steps
