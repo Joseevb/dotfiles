@@ -147,16 +147,12 @@ alias fzf="fzf --tmux"
 # Mason bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
-<<<<<<< HEAD
 # Zig bin
-export PATH="$HOME/workspace/bin/zig:$PATH"
+export PATH="$HOME/.local/share/zig:$PATH"
 
 export PATH="$HOME/.local/bin/:$PATH"
-=======
-export PATH="$HOME/.local/share/zig:$PATH"
->>>>>>> 4a01be8 (changes to zshrc)
 
-# JAVA 
+# JAVA
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 export PATH=$JAVA_HOME/bin:$PATH
 export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/jdtls/lombok.jar"
