@@ -138,7 +138,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export tmux="tmux -u"
 
 # Oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/themes/catppuccin_macchiato.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
 
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -147,10 +147,14 @@ alias fzf="fzf --tmux"
 # Mason bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
+<<<<<<< HEAD
 # Zig bin
 export PATH="$HOME/workspace/bin/zig:$PATH"
 
 export PATH="$HOME/.local/bin/:$PATH"
+=======
+export PATH="$HOME/.local/share/zig:$PATH"
+>>>>>>> 4a01be8 (changes to zshrc)
 
 # JAVA 
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
