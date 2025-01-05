@@ -108,3 +108,7 @@ button:hover {
 .modules-right > widget:last-child > #workspaces {
 	margin-right: 0px;
 }
+
+#custom-quicksettings {
+	padding-right: 10px; /* Adjust the value as needed */
+}
