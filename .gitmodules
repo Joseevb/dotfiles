@@ -1,0 +1,3 @@
+[submodule "waybar/.config/waybar/scripts/waybar/.config/waybar/tools/wttrbar"]
+	path = waybar/.config/waybar/scripts/waybar/.config/waybar/tools/wttrbar
+	url = https://github.com/bjesus/wttrbar.git

@@ -73,12 +73,13 @@
 		},
 		"on-click": "pavucontrol"
 	},
-	"custom/weather": {
-		"format": "{}",
-		"interval": 3600,
-		"exec": "bash /home/jose/.config/waybar/scripts/get-current-weather.sh",
-		"exec-if": "ping -c1 wttr.in >/dev/null 2>&1"
-	},
+    "custom/weather": {
+        "format": "{}°",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "/home/jose/.config/waybar/scripts/wttrbar-wrapper.sh",
+        "return-type": "json"
+    },
 	"custom/vpn": {
 		"tooltip": false,
 		"format": "VPN {}",
