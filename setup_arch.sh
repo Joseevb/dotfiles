@@ -15,11 +15,15 @@ install_paru() {
     if ! command -v paru &> /dev/null; then
         echo "Installing paru for package management..."
         sudo pacman -S --noconfirm --needed base-devel git
-        git clone https://aur.archlinux.org/paru.git
-        cd paru || exit
-        makepkg -si --noconfirm
-        cd ..
-        rm -rf paru
+
+        git clone https://github.com/Morganamilo/paru/releases/download/v2.0.4/paru-v2.0.4-x86_64.tar.zst ~/.local/share/paru.tar.zst
+
+        tar -xvf ~/.local/share/paru.tar.zst -C ~/.local/share
+
+        rm ~/.local/share/paru.tar.zst
+
+        ln -s ~/.local/share/paru/paru ~/.local/bin/paru
+
     else
         echo "Paru is already installed."
     fi
@@ -29,7 +33,7 @@ install_paru() {
 install_packages() {
     echo "Updating package lists..."
     paru -Syu --noconfirm
-    paru -S --noconfirm git zsh fd jdk-openjdk fuse bat
+    paru -S --noconfirm git zsh fd jdk-openjdk fuse bat fzf tmux
 }
 
 # Function to install Neovim
@@ -52,25 +56,6 @@ install_homebrew() {
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     else
         echo "Homebrew is already installed."
-    fi
-}
-
-# Function to install fzf
-install_fzf() {
-    if ! command -v fzf &> /dev/null; then
-        paru -S --noconfirm fzf
-        link_fd  # Automatically link fd for fzf after installing fzf
-    else
-        echo "fzf is already installed."
-    fi
-}
-
-# Function to install tmux
-install_tmux() {
-    if ! command -v tmux &> /dev/null; then
-        paru -S --noconfirm tmux
-    else
-        echo "tmux is already installed."
     fi
 }
 
@@ -105,17 +90,10 @@ link_fd() {
     fi
 }
 
-# Function to ensure bat is linked correctly 
-link_bat() {
-    if ! command -v bat &> /dev/null; then
-        mkdir -p ~/.local/bin
-        ln -s /usr/bin/bat ~/.local/bin/bat
-    fi
-}
 
 # Function to install plugins for zsh
 install_zsh_plugins() {
-    ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+g   ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
     mkdir -p "$ZSH_CUSTOM/plugins"
 
     declare -A plugins=( 
@@ -169,8 +147,9 @@ install_yazi() {
 
 # Function to stow configuration files
 stow_configs() {
-    echo "Stowing configuration files..."
-    stow -v -d ~/dotfiles -t ~ zsh tmux nvim git live-server bat yazi prettierd sway waybar
+    for dir in $(find . -maxdepth 1 -type d ! -name 'setup_*' ! -name '.git'); do
+        stow $(basename $dir)
+    done
 }
 
 # Main setup steps

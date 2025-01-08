@@ -4,6 +4,6 @@ background-opacity=0.9
 window-decoration = false
 gtk-titlebar = false
 shell-integration = none
-title = " "
+title = ""
 
 confirm-close-surface = false
