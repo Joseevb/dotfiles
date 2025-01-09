@@ -3,13 +3,13 @@ return {
 	config = function()
 		require("supermaven-nvim").setup({
 			keymaps = {
-				accept_suggestion = "<leader><CR>",
+				accept_suggestion = "<Tab><CR>",
 				clear_suggestion = "<C-]>",
 				accept_word = "<C-j>",
 			},
 			ignore_filetypes = { cpp = true }, -- or { "cpp", }
 			color = {
-				suggestion_color = "#ffffff",
+				suggestion_color = "#bbbbbb"
 				cterm = 244,
 			},
 			log_level = "info", -- set to "off" to disable logging completely
