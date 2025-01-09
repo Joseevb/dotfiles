@@ -147,9 +147,7 @@ install_yazi() {
 
 # Function to stow configuration files
 stow_configs() {
-    for dir in $(find . -maxdepth 1 -type d ! -name 'setup_*' ! -name '.git'); do
-        stow $(basename $dir)
-    done
+    sh ./auto_stow.sh
 }
 
 # Main setup steps
