@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>e", function()
 	vim.cmd({ cmd = "Oil", args = { "--float" } })
 end, { desc = "Open Oil file explorer" })
 
-vim.keymap.set("n", "<C-c>", "<Esc>", { desc = "Escape key alternative" })
+vim.keymap.set("n", "<C-c>", "<Esc>:noh<CR>", { desc = "Escape key alternative" })
 
 -- Line Movement in Visual Mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down in visual mode" })

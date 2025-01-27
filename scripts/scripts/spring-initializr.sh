@@ -44,6 +44,19 @@ select BUILD_TOOL in "maven" "gradle"; do
   fi
 done
 
+# If build tool is gradle, prompt for type
+if [[ "$BUILD_TOOL" == "gradle" ]]; then
+  PS3="Choose a Gradle project type: "
+  select GRADLE_TYPE in "gradle-project" "gradle-project-kotlin"; do
+    if [[ -n "$GRADLE_TYPE" ]]; then
+      break
+    fi
+  done
+  TYPE_FLAG="--type=$GRADLE_TYPE"
+else
+  TYPE_FLAG=""
+fi
+
 # Use fzf for dependency selection
 SELECTED_DEPENDENCIES=$(select_dependencies "${ALL_DEPENDENCIES[@]}")
 
@@ -54,6 +67,7 @@ echo "Group ID:           $GROUP_ID"
 echo "Artifact Name:      $ARTIFACT_NAME"
 echo "Java Version:       $JAVA_VERSION"
 echo "Build Tool:         $BUILD_TOOL"
+[[ "$BUILD_TOOL" == "gradle" ]] && echo "Gradle Type:        $GRADLE_TYPE"
 echo "Dependencies:       $SELECTED_DEPENDENCIES"
 echo "---------------------------------------------"
 read -rp "Is this correct? (y/n): " CONFIRM
@@ -63,9 +77,10 @@ if [[ "$CONFIRM" != "y" ]]; then
 fi
 
 # Run the spring init command
-COMMAND="spring init -n=$PROJECT_NAME -g=$GROUP_ID -a=$ARTIFACT_NAME --build=$BUILD_TOOL -j=$JAVA_VERSION -d=$(echo "$SELECTED_DEPENDENCIES" | tr '\n' ',') $PROJECT_NAME"
+COMMAND="spring init -n=$PROJECT_NAME -g=$GROUP_ID -a=$ARTIFACT_NAME --build=$BUILD_TOOL $TYPE_FLAG -j=$JAVA_VERSION -d=$(echo "$SELECTED_DEPENDENCIES" | tr '\n' ',') $PROJECT_NAME"
 
 echo "Running: $COMMAND"
 eval "$COMMAND"
 
 echo "Project created successfully!"
+
