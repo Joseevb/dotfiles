@@ -93,7 +93,7 @@ link_fd() {
 
 # Function to install plugins for zsh
 install_zsh_plugins() {
-g   ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+    ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
     mkdir -p "$ZSH_CUSTOM/plugins"
 
     declare -A plugins=( 
