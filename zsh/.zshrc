@@ -118,7 +118,7 @@ alias python="/usr/bin/python3.13"
 alias jgf='find . -name "*.java" -exec google-java-format -aosp --replace {} +'
 
 # kill mysql instance
-alias kill_mysql='/etc/init.d/mysql stop'
+alias kill_mysql='sudo /etc/init.d/mysql stop'
 
 alias tm='tmux'
 
@@ -203,7 +203,30 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath+=~/.zsh/completions
 
-neofetch
+eval "$(zoxide init zsh)"
+
+# Greeter
+
+if [[ ! -f test_image.png ]]; then
+    touch test_image.png
+fi
+
+if [[ -f test_image.png ]]; then
+    if kitten icat test_image.png &>/dev/null; then
+        if command -v fastfetch &>/dev/null; then
+            fastfetch
+        elif command -v neofetch &>/dev/null; then
+            neofetch
+        fi
+    else
+        if command -v fastfetch &>/dev/null; then
+            fastfetch --logo-type builtin
+        elif command -v neofetch &>/dev/null; then
+            neofetch --source ascii
+        fi
+    fi
+    rm -f test_image.png
+fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

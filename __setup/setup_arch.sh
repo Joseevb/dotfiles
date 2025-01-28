@@ -12,28 +12,36 @@ confirm() {
 
 # Function to install paru for package management
 install_paru() {
-    if ! command -v paru &> /dev/null; then
+    # if ! command -v paru &> /dev/null; then
         echo "Installing paru for package management..."
         sudo pacman -S --noconfirm --needed base-devel git
 
-        git clone https://github.com/Morganamilo/paru/releases/download/v2.0.4/paru-v2.0.4-x86_64.tar.zst ~/.local/share/paru.tar.zst
+        mkdir -p ~/.local/share/paru
 
-        tar -xvf ~/.local/share/paru.tar.zst -C ~/.local/share
+        wget -O ~/.local/share/paru.tar.zst https://github.com/Morganamilo/paru/releases/download/v2.0.4/paru-v2.0.4-x86_64.tar.zst
+
+        tar -xvf ~/.local/share/paru.tar.zst -C ~/.local/share/paru
 
         rm ~/.local/share/paru.tar.zst
 
         ln -s ~/.local/share/paru/paru ~/.local/bin/paru
 
-    else
-        echo "Paru is already installed."
-    fi
+        if command -v paru &>/dev/null; then
+            echo "Paru installed successfully."
+        else
+            echo "Failed to install Paru."
+        fi
+
+    # else
+    #     echo "Paru is already installed."
+    # fi
 }
 
 # Function to update and install required packages
 install_packages() {
     echo "Updating package lists..."
     paru -Syu --noconfirm
-    paru -S --noconfirm git zsh fd jdk-openjdk fuse bat fzf tmux
+    paru -S --noconfirm git zsh fd fuse bat fzf tmux htop btop fastfetch python
 }
 
 # Function to install Neovim
@@ -68,28 +76,6 @@ install_nvm() {
         echo "nvm is already installed."
     fi
 }
-
-# Function to install Python 3.13
-install_python() {
-    echo "Installing Python 3.13..."
-    paru -S --noconfirm python
-
-    if python3 --version &>/dev/null; then
-        echo "Python 3 installed successfully."
-    else
-        echo "Failed to install Python 3."
-        exit 1
-    fi
-}
-
-# Function to link fd for fzf (called after fzf installation)
-link_fd() {
-    if ! command -v fd &> /dev/null; then
-        mkdir -p ~/.local/bin
-        ln -s $(which fd) ~/.local/bin/fd
-    fi
-}
-
 
 # Function to install plugins for zsh
 install_zsh_plugins() {
@@ -147,7 +133,7 @@ install_yazi() {
 
 # Function to stow configuration files
 stow_configs() {
-    sh ./auto_stow.sh
+    sh ~/dotfiles/__setup/auto_stow.sh
 }
 
 # Main setup steps
