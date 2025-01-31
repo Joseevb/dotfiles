@@ -212,19 +212,25 @@ if [[ ! -f test_image.png ]]; then
 fi
 
 if [[ -f test_image.png ]]; then
-    if kitten icat test_image.png &>/dev/null; then
-        if command -v fastfetch &>/dev/null; then
-            fastfetch
-        elif command -v neofetch &>/dev/null; then
-            neofetch
-        fi
-    else
-        if command -v fastfetch &>/dev/null; then
-            fastfetch --logo-type builtin
-        elif command -v neofetch &>/dev/null; then
-            neofetch --source ascii
-        fi
-    fi
+
+    terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
+
+    case "$terminal" in
+        *kitty* | *ghostty*)
+            if command -v fastfetch &>/dev/null; then
+                fastfetch
+            elif command -v neofetch &>/dev/null; then
+                neofetch
+            fi
+            ;;
+        *)
+            if command -v fastfetch &>/dev/null; then
+                fastfetch --logo-type builtin
+            elif command -v neofetch &>/dev/null; then
+                neofetch --source ascii
+            fi
+            ;;
+    esac
     rm -f test_image.png
 fi
 
