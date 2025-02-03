@@ -133,6 +133,7 @@ install_yazi() {
 
 # Function to stow configuration files
 stow_configs() {
+    cd ..
     sh ~/dotfiles/__setup/auto_stow.sh
 }
 
