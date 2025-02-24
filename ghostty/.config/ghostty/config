@@ -11,3 +11,5 @@ fullscreen = true
 
 keybind = ctrl+shift+alt+enter=toggle_fullscreen 
 keybind = ctrl+enter=unbind
+
+font-family = "CaskaydiaCove Nerd Font"

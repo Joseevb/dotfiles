@@ -10,13 +10,16 @@ return {
 			-- install jsregexp (optional!).
 			build = "make install_jsregexp",
 		},
+		"saadparwaiz1/cmp_luasnip",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim", -- vs-code like pictograms
+		"mlaursen/vim-react-snippets",
 	},
-	config = function()
+	opts = function()
 		local cmp = require("cmp")
 		local lspkind = require("lspkind")
 		local luasnip = require("luasnip")
+		require("vim-react-snippets").lazy_load()
 
 		require("luasnip.loaders.from_vscode").lazy_load()
 

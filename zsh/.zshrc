@@ -126,7 +126,50 @@ alias tm='tmux'
 # must install fd first using `sudo apt install fd-find` and then `ln -s $(which fdfind) ~/.local/bin/fd`
 alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-alias l="ls -A -1"
+function l() {
+        local dirs=() files=() hidden_dirs=() hidden_files=()
+
+    # Process non-hidden entries
+    for entry in *; do
+        if [[ -e "$entry" ]]; then
+            if [[ -d "$entry" ]]; then
+                dirs+=("$entry")
+            else
+                files+=("$entry")
+            fi
+        fi
+    done
+
+    # Process hidden entries (excluding . and ..)
+    for entry in .*; do
+        if [[ "$entry" == "." || "$entry" == ".." ]]; then
+            continue
+        fi
+        if [[ -e "$entry" ]]; then
+            if [[ -d "$entry" ]]; then
+                hidden_dirs+=("$entry")
+            else
+                hidden_files+=("$entry")
+            fi
+        fi
+    done
+
+    # Print each category with formatted output
+    print_section() {
+        if [[ $# -gt 1 ]]; then
+            echo "$1:"
+            shift
+            printf -- '- %s\n' "$@"
+        fi
+    }
+
+    print_section "Directories" "${dirs[@]}"
+    print_section "Files" "${files[@]}"
+    print_section "Hidden directories" "${hidden_dirs[@]}"
+    print_section "Hidden files" "${hidden_files[@]}"
+}
+
+unalias l
 
 # Enable vim in cli
 bindkey -v
@@ -207,32 +250,33 @@ eval "$(zoxide init zsh)"
 
 # Greeter
 
-if [[ ! -f test_image.png ]]; then
-    touch test_image.png
-fi
-
-if [[ -f test_image.png ]]; then
-
-    terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
-
-    case "$terminal" in
-        *kitty* | *ghostty*)
-            if command -v fastfetch &>/dev/null; then
-                fastfetch
-            elif command -v neofetch &>/dev/null; then
-                neofetch
-            fi
-            ;;
-        *)
-            if command -v fastfetch &>/dev/null; then
-                fastfetch --logo-type builtin
-            elif command -v neofetch &>/dev/null; then
-                neofetch --source ascii
-            fi
-            ;;
-    esac
-    rm -f test_image.png
-fi
+# if [[ ! -f test_image.png ]]; then
+#     touch test_image.png
+# fi
+#
+# if [[ -f test_image.png ]]; then
+#
+#     terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
+#
+#     case "$terminal" in
+#         *kitty* | *ghostty*)
+#             if command -v fastfetch &>/dev/null; then
+#                 fastfetch
+#             elif command -v neofetch &>/dev/null; then
+#                 neofetch
+#             fi
+#             ;;
+#         *)
+#             if command -v fastfetch &>/dev/null; then
+#                 fastfetch --logo-type builtin
+#             elif command -v neofetch &>/dev/null; then
+#                 neofetch --source ascii
+#             fi
+#             ;;
+#     esac
+#     rm -f test_image.png
+# fi
+fastfetch 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
