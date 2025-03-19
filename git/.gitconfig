@@ -1,7 +1,13 @@
 [user]
-	name = Joseevb
-	email = joseevasquez04@gmail.com
+	name = Jose Esteban Vasquez Barboza
+	email = joseesteban.vasquez@alita.es
 [init]
 	defaultBranch = main
 [safe]
 	directory = /opt/lampp/htdocs/login
+[alias]
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+[credential]
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[credential "https://github.com"]
+	username = JoseeVasquez

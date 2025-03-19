@@ -49,7 +49,7 @@ return {
 					enabled = true,
 					indentscope_color = "",
 				},
-				-- for more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 			},
 		})
 
