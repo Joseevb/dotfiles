@@ -200,7 +200,7 @@ export PATH="$HOME/.local/bin/:$PATH"
 # JAVA
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 export PATH=$JAVA_HOME/bin:$PATH
-export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/jdtls/lombok.jar"
+# export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/jdtls/lombok.jar"
 
 # Nvm
 export NVM_DIR="$HOME/.nvm"

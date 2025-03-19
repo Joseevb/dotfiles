@@ -28,10 +28,12 @@ return {
 		mason_lspconfig.setup_handlers({
 			-- Default handler for all servers
 			function(server_name)
-				nvim_lsp[server_name].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-				})
+				if server_name ~= "jdtls" then -- ❌ Prevent Mason from attaching JDTLS
+					nvim_lsp[server_name].setup({
+						on_attach = on_attach,
+						capabilities = capabilities,
+					})
+				end
 			end,
 			-- Custom handler for specific server (e.g., emmet)
 			["emmet_language_server"] = function()

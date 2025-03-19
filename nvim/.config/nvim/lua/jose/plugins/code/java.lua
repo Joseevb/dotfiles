@@ -5,11 +5,14 @@ return {
 		local jdtls = require("jdtls")
 		local mason = require("mason-registry")
 
-		-- Find the paths for installed LSP packages
+		-- Paths for installed LSP packages
 		local jdtls_path = mason.get_package("jdtls"):get_install_path()
 		local java_debug_path = mason.get_package("java-debug-adapter"):get_install_path()
 		local java_test_path = mason.get_package("java-test"):get_install_path()
 		local java_decompiler_path = mason.get_package("vscode-java-decompiler"):get_install_path()
+
+		-- Decompiler JARs
+		local decompiler_jars = vim.fn.glob(java_decompiler_path .. "/server/*.jar", false, true)
 
 		-- Find the Eclipse JDTLS launcher
 		local equinox_launcher_path = vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar")
@@ -23,8 +26,9 @@ return {
 
 		-- LSP server configuration
 		local config = {
+			autostart = true,
 			cmd = {
-				vim.fn.expand("~/.sdkman/candidates/java/current/bin/java"), -- Ensure correct Java version
+				vim.fn.expand("~/.sdkman/candidates/java/current/bin/java"),
 				"-Declipse.application=org.eclipse.jdt.ls.core.id1",
 				"-Dosgi.bundles.defaultStartLevel=4",
 				"-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -60,80 +64,51 @@ return {
 				keymap("<C-k>", vim.lsp.buf.signature_help, "Show signature")
 				keymap("<leader>wa", vim.lsp.buf.add_workspace_folder, "Add workspace folder")
 				keymap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "Remove workspace folder")
-				keymap("<leader>wl", function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, "List workspace folders")
 				keymap("<leader>D", vim.lsp.buf.type_definition, "Go to type definition")
 				keymap("<leader>rn", vim.lsp.buf.rename, "Rename")
 				keymap("<leader>ca", vim.lsp.buf.code_action, "Code actions")
-				vim.keymap.set(
-					"v",
-					"<leader>ca",
-					"<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>",
-					{ noremap = true, silent = true, buffer = bufnr, desc = "Code actions" }
-				)
 				keymap("<leader>f", function()
 					vim.lsp.buf.format({ async = true })
 				end, "Format file")
-
-				-- Java-specific keymaps (using jdtls)
 				keymap("<C-o>", jdtls.organize_imports, "Organize imports")
 				keymap("<leader>ev", jdtls.extract_variable, "Extract variable")
 				keymap("<leader>ec", jdtls.extract_constant, "Extract constant")
-				vim.keymap.set(
-					"v",
-					"<leader>em",
-					[[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
-					{ noremap = true, silent = true, buffer = bufnr, desc = "Extract method" }
-				)
 			end,
 
 			settings = {
 				java = {
 					eclipse = { downloadSources = true },
 					maven = { downloadSources = true },
-					contentProvider = { preferred = "fernflower" },
-					project = { referencedLibraries = { "lib/**/*.jar" } }, -- Ensure libraries are included
+					contentProvider = { preferred = "fernflower" }, -- Force fernflower
+					project = {
+						referencedLibraries = {
+							vim.fn.expand("~/.m2/repository/**/*.jar"),
+							vim.fn.expand("~/.gradle/caches/**/*.jar"),
+							"lib/**/*.jar",
+						},
+					},
 					signatureHelp = { enabled = true },
 					implementationsCodeLens = { enabled = true },
 					referenceCodeLens = { enabled = true },
 					inlayHints = { parameterNames = { enabled = true } },
-					references = { includeDecompiledSources = true },
-					sources = { organizeImports = { starThreshold = 9999, staticStarThreshold = 9999 } },
-					configuration = {
-						runtimes = {
-							{ name = "JavaSE-17", path = vim.fn.expand("~/.sdkman/candidates/java/17*") },
-							{ name = "JavaSE-21", path = vim.fn.expand("~/.sdkman/candidates/java/21*") },
-							{
-								name = "JavaSE-23",
-								path = vim.fn.expand("~/.sdkman/candidates/java/23*"),
-								default = true,
-							},
-						},
-					},
+					references = { includeDecompiledSources = true }, -- Force JDTLS to use decompiler
 				},
-				redhat = { telemetry = { enabled = false } },
 			},
 		}
-
-		-- 🔧 Fix bundle loading issues
-		local function get_jars(path)
-			local jars = vim.fn.glob(path .. "/extension/server/*.jar", false, true)
-			if not jars or #jars == 0 then
-				return {}
-			end
-			return jars
-		end
 
 		-- Load additional extensions
 		local bundles = {
 			vim.fn.glob(java_debug_path .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
 		}
-		vim.list_extend(bundles, get_jars(java_test_path))
-		vim.list_extend(bundles, get_jars(java_decompiler_path))
+		vim.list_extend(bundles, decompiler_jars) -- Ensure decompiler is loaded
 
 		-- Apply bundles to config
 		config.init_options = { bundles = bundles }
+
+		-- Debugging Output
+		vim.schedule(function()
+			print("JDTLS Bundles Loaded:", vim.inspect(bundles))
+		end)
 
 		-- Start or attach JDTLS
 		jdtls.start_or_attach(config)
