@@ -126,56 +126,55 @@ alias tm='tmux'
 # must install fd first using `sudo apt install fd-find` and then `ln -s $(which fdfind) ~/.local/bin/fd`
 alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-function l() {
-        local dirs=() files=() hidden_dirs=() hidden_files=()
+alias ls="exa"
 
-    # Process non-hidden entries
-    for entry in *; do
-        if [[ -e "$entry" ]]; then
-            if [[ -d "$entry" ]]; then
-                dirs+=("$entry")
-            else
-                files+=("$entry")
-            fi
-        fi
-    done
-
-    # Process hidden entries (excluding . and ..)
-    for entry in .*; do
-        if [[ "$entry" == "." || "$entry" == ".." ]]; then
-            continue
-        fi
-        if [[ -e "$entry" ]]; then
-            if [[ -d "$entry" ]]; then
-                hidden_dirs+=("$entry")
-            else
-                hidden_files+=("$entry")
-            fi
-        fi
-    done
-
-    # Print each category with formatted output
-    print_section() {
-        if [[ $# -gt 1 ]]; then
-            echo "$1:"
-            shift
-            printf -- '- %s\n' "$@"
-        fi
-    }
-
-    print_section "Directories" "${dirs[@]}"
-    print_section "Files" "${files[@]}"
-    print_section "Hidden directories" "${hidden_dirs[@]}"
-    print_section "Hidden files" "${hidden_files[@]}"
-}
-
-unalias l
+# function l() {
+#         local dirs=() files=() hidden_dirs=() hidden_files=()
+#
+#     # Process non-hidden entries
+#     for entry in *; do
+#         if [[ -e "$entry" ]]; then
+#             if [[ -d "$entry" ]]; then
+#                 dirs+=("$entry")
+#             else
+#                 files+=("$entry")
+#             fi
+#         fi
+#     done
+#
+#     # Process hidden entries (excluding . and ..)
+#     for entry in .*; do
+#         if [[ "$entry" == "." || "$entry" == ".." ]]; then
+#             continue
+#         fi
+#         if [[ -e "$entry" ]]; then
+#             if [[ -d "$entry" ]]; then
+#                 hidden_dirs+=("$entry")
+#             else
+#                 hidden_files+=("$entry")
+#             fi
+#         fi
+#     done
+#
+#     # Print each category with formatted output
+#     print_section() {
+#         if [[ $# -gt 1 ]]; then
+#             echo "$1:"
+#             shift
+#             printf -- '- %s\n' "$@"
+#         fi
+#     }
+#
+#     print_section "Directories" "${dirs[@]}"
+#     print_section "Files" "${files[@]}"
+#     print_section "Hidden directories" "${hidden_dirs[@]}"
+#     print_section "Hidden files" "${hidden_files[@]}"
+# }
+#
+# unalias l
 
 # Enable vim in cli
 bindkey -v
-
-# plugins
-plugins=(git)
 
 # tmux
 export TERM="xterm-256color"
@@ -188,6 +187,12 @@ eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macch
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 alias fzf="fzf --tmux"
+source /usr/share/fzf/key-bindings.zsh
+
+# fzf ctrl-r and alt-c behavior
+export FZF_DEFAULT_COMMAND="fd --hidden"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
 
 # Mason bin
 export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"

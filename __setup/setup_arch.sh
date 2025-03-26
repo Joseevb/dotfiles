@@ -14,9 +14,12 @@ confirm() {
 install_paru() {
     # if ! command -v paru &> /dev/null; then
         echo "Installing paru for package management..."
-        sudo pacman -S --noconfirm --needed base-devel git
+        sudo pacman -S --noconfirm --needed base-devel git wget
 
         mkdir -p ~/.local/share/paru
+        mkdir -p ~/.local/bin
+
+        export PATH=$PATH:~/.local/bin
 
         wget -O ~/.local/share/paru.tar.zst https://github.com/Morganamilo/paru/releases/download/v2.0.4/paru-v2.0.4-x86_64.tar.zst
 
@@ -41,20 +44,21 @@ install_paru() {
 install_packages() {
     echo "Updating package lists..."
     paru -Syu --noconfirm
-    paru -S --noconfirm git zsh fd fuse bat fzf tmux htop btop fastfetch python
+    paru -S --noconfirm git zsh fd fuse bat fzf tmux htop btop fastfetch python exa
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-# Function to install Neovim
-install_neovim() {
-    echo "Installing Neovim from the official repository..."
-    paru -S --noconfirm neovim
+install_oh-my-zsh() {
+    echo "Installing oh-my-zsh..."  
 
-    if nvim --version &>/dev/null; then
-        echo "Neovim installed successfully and is accessible with the 'nvim' command."
-    else
-        echo "Failed to install Neovim."
-        exit 1
-    fi
+    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+    rm -rf ~/.zshrc
+}
+
+install_oh-my-posh() {
+    echo "Installing oh-my-posh..."
+
+    curl -s https://ohmyposh.dev/install.sh | bash -s
 }
 
 # Function to install Homebrew
@@ -145,13 +149,9 @@ cd cache
 echo "Welcome to the work environment setup script!"
 confirm "Install paru for package management?" && install_paru
 confirm "Install required packages?" && install_packages
-confirm "Install Neovim?" && install_neovim
 confirm "Install Homebrew?" && install_homebrew
-confirm "Install fzf?" && install_fzf
-confirm "Install tmux?" && install_tmux
-confirm "Install nvm?" && install_nvm
-confirm "Install Python?" && install_python
-confirm "Link bat?" && link_bat
+confirm "Install oh-my-zsh?" && install_oh-my-zsh
+confirm "Install oh-my-posh?" && install_oh-my-posh
 confirm "Install zsh plugins?" && install_zsh_plugins
 confirm "Install SDKMAN?" && install_sdkman
 confirm "Install Conda?" && install_conda
