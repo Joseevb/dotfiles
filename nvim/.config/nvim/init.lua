@@ -1,5 +1,5 @@
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Create an augroup for highlight_yank
 local highlight_yank_group = vim.api.nvim_create_augroup("highlight_yank", {})
@@ -13,14 +13,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Create or retrieve the 'open_folds' augroup
-local open_folds_group = vim.api.nvim_create_augroup("open_folds", { clear = true })
-
--- Define the autocommand within the 'open_folds' group
-vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
-    group = open_folds_group,
-    pattern = "*",
-    command = "normal! zR",
-})
+-- local open_folds_group = vim.api.nvim_create_augroup("open_folds", { clear = true })
+--
+-- -- Define the autocommand within the 'open_folds' group
+-- vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+--     group = open_folds_group,
+--     pattern = "*",
+--     command = "normal! zR",
+-- })
 
 -- Create an augroup for prettier
 -- local prettier_group = vim.api.nvim_create_augroup('Prettier', {})

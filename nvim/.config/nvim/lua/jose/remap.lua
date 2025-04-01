@@ -126,3 +126,8 @@ end, { desc = "Toggle relative numbers" })
 -- ================================
 -- Disable `q:` command history window
 vim.keymap.set("n", "q:", "<Nop>", { desc = "Disable command history window" })
+
+-- ================================
+-- Neotree
+-- ================================
+vim.keymap.set("n", "<leader>ot", ":Neotree reveal<CR>", { desc = "Toggle Neotree" })

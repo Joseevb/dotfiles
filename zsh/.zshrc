@@ -77,7 +77,7 @@ HIST_STAMPS="yyyy/mm/dd"
 # zsh-autoswitch-virtualenv: `git clone "https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git" "$ZSH_CUSTOM/plugins/autoswitch_virtualenv"`
 # you-should-use: `git clone https://github.com/MichaelAquilina/zsh-you-should-use.git $ZSH_CUSTOM/plugins/you-should-use`
 # zsh-bat: `git clone https://github.com/fdellwing/zsh-bat.git $ZSH_CUSTOM/plugins/zsh-bat`
-plugins=(git z copyfile copybuffer dirhistory zsh-autosuggestions zsh-syntax-highlighting autoswitch_virtualenv you-should-use zsh-bat)
+plugins=(git copyfile copybuffer dirhistory zsh-autosuggestions zsh-syntax-highlighting autoswitch_virtualenv you-should-use zsh-bat)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,7 +126,10 @@ alias tm='tmux'
 # must install fd first using `sudo apt install fd-find` and then `ln -s $(which fdfind) ~/.local/bin/fd`
 alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-alias ls="exa"
+alias ls="eza --icons=always"
+alias l="ls -1"
+
+alias ginit='g init && gaa && gcam "initialized project"'
 
 # function l() {
 #         local dirs=() files=() hidden_dirs=() hidden_files=()
@@ -282,6 +285,15 @@ eval "$(zoxide init zsh)"
 #     rm -f test_image.png
 # fi
 fastfetch 
+
+for i in "/mnt/wslg/runtime-dir/"*; do
+  if [ ! -L "$XDG_RUNTIME_DIR$(basename "$i")" ]; then
+    [ -d "$XDG_RUNTIME_DIR$(basename "$i")" ] && rm -r "$XDG_RUNTIME_DIR$(basename "$i")"
+    ln -s "$i" "$XDG_RUNTIME_DIR$(basename "$i")"
+  fi
+done
+
+eval $($HOME/wsl2-ssh-agent)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

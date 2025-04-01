@@ -39,13 +39,13 @@ vim.opt.smartcase = true -- Case-sensitive if search query contains uppercase
 -- Buffer and Tab Management
 -- ================================
 vim.opt.hidden = true -- Allow switching buffers without saving
-vim.opt.switchbuf = { "usetab", "newtab" } -- Reuse or open new tabs for buffers
-vim.opt.showtabline = 2 -- Always show the tabline
+-- vim.opt.switchbuf = { "usetab", "newtab" } -- Reuse or open new tabs for buffers
+-- vim.opt.showtabline = 2 -- Always show the tabline
 
 vim.opt.sessionoptions:append("buffers") -- Persist buffers across sessions
 
 -- Tabline customization: Show all open buffers
-vim.o.tabline = "%!v:lua.Tabline()"
+-- vim.o.tabline = "%!v:lua.Tabline()"
 
 function _G.Tabline()
 	local s = ""
