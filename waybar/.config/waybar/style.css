@@ -1,0 +1,114 @@
+@import "macchiato.css";
+
+* {
+	font-family: "CaskaydiaCove Nerd Font";
+	font-size: 12px;
+	min-height: 0;
+	font-weight: bold;
+}
+
+window#waybar {
+	background: transparent;
+	background-color: @base;
+	color: @foreground;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+#window {
+	margin: 2px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+button {
+	box-shadow: inset 0px -3px transparent;
+	border: none;
+	border-radius: 0px;
+}
+
+button:hover {
+	background: inherit;
+	border-top: 2px solid @hover;
+}
+
+#workspaces button {
+	padding: 0px 4px;
+}
+
+#workspaces button.focused {
+	background-color: rgba(0, 0, 0, 0.3);
+	color: @blue;
+	border-top: 2px solid @blue;
+}
+
+#workspaces button.urgent {
+	background-color: #eb4d4b;
+}
+
+#pulseaudio,
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#wireplumber,
+#tray,
+#mode,
+#network,
+#scratchpad {
+	margin: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#clock {
+	color: @maroon;
+	border-bottom: 2px solid @maroon;
+}
+
+#clock.date {
+	color: @mauve;
+	border-bottom: 2px solid @mauve;
+}
+
+#pulseaudio {
+	color: @blue;
+	border-bottom: 2px solid @blue;
+}
+
+#network {
+	color: @yellow;
+	border-bottom: 2px solid @yellow;
+}
+
+#idle_inhibitor {
+	margin-right: 12px;
+	color: #7cb342;
+}
+
+#idle_inhibitor.activated {
+	color: @red;
+}
+
+#battery.charging,
+#battery.plugged {
+	color: @green;
+	border-bottom: 2px solid @green;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+	margin-left: 0px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+	margin-right: 0px;
+}
+
+#custom-quicksettings {
+	padding-right: 10px; /* Adjust the value as needed */
+}
