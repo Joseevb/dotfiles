@@ -1,10 +1,8 @@
 return {
 	"yetone/avante.nvim",
-	-- Removed as it was always throwing errors.
-	-- TODO: configure it properly
-	enabled = false,
 	event = "VeryLazy",
 	version = false, -- Never set this value to "*"! Never!
+	enabled = false,
 	opts = {
 		-- add any opts here
 		-- for example
@@ -25,56 +23,10 @@ return {
 			auto_apply_diff_after_generation = false,
 			support_paste_from_clipboard = false,
 		},
-		mappings = {
-			--- @class AvanteConflictMappings
-			diff = {
-				ours = "co",
-				theirs = "ct",
-				all_theirs = "ca",
-				both = "cb",
-				cursor = "cc",
-				next = "]x",
-				prev = "[x",
-			},
-			suggestion = {
-				accept = "<M-l>",
-				next = "<M-]>",
-				prev = "<M-[>",
-				dismiss = "<C-]>",
-			},
-			jump = {
-				next = "]]",
-				prev = "[[",
-			},
-			submit = {
-				normal = "<CR>",
-				insert = "<C-s>",
-			},
+		selector = {
+			provider = "fzf",
 		},
 		hints = { enabled = true },
-		windows = {
-			---@type "right" | "left" | "top" | "bottom"
-			position = "right", -- the position of the sidebar
-			wrap = true, -- similar to vim.o.wrap
-			width = 30, -- default % based on available width
-			sidebar_header = {
-				align = "center", -- left, center, right for title
-				rounded = true,
-			},
-		},
-		highlights = {
-			---@type AvanteConflictHighlights
-			diff = {
-				current = "DiffText",
-				incoming = "DiffAdd",
-			},
-		},
-		--- @class AvanteConflictUserConfig
-		diff = {
-			autojump = true,
-			---@type string | fun(): any
-			list_opener = "copen",
-		},
 	},
 	-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 	build = "make",
@@ -85,9 +37,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		--- The below dependencies are optional,
-		"echasnovski/mini.pick", -- for file_selector provider mini.pick
-		"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-		"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
 		"ibhagwan/fzf-lua", -- for file_selector provider fzf
 		"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 		"zbirenbaum/copilot.lua", -- for providers='copilot'

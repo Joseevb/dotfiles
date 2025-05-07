@@ -1,3 +1,8 @@
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
 local handler = function(virtText, lnum, endLnum, width, truncate)
 	local newVirtText = {}
 	local suffix = (" 󰁂 %d "):format(endLnum - lnum)
@@ -31,9 +36,12 @@ return {
 	dependencies = { "kevinhwang91/promise-async" },
 	opts = {
 		provider_selector = function()
-			return { "treesitter", "indent" }
+			return { "lsp", "indent" }
 		end,
 		fold_virt_text_handler = handler,
+		close_fold_kinds_for_ft = {
+			default = { "imports", "comment" },
+		},
 		preview = {
 			win_config = {
 				winhighlight = "Normal:Folded",
@@ -52,9 +60,7 @@ return {
 			"K",
 			function()
 				local winid = require("ufo").peekFoldedLinesUnderCursor()
-				if not winid then
-					vim.lsp.buf.hover()
-				else
+				if winid then
 					require("ufo").peekFoldedLinesUnderCursor()
 				end
 			end,

@@ -24,7 +24,12 @@ return {
 			"query",
 			"sql",
 			"yaml",
+			"css",
+			"desktop",
+			"all",
 		},
+		sync_install = false,
+		auto_install = true,
 		highlight = {
 			enable = true, -- Ensure syntax highlighting is enabled
 			additional_vim_regex_highlighting = true, -- Disable fallback regex highlighting
@@ -34,14 +39,21 @@ return {
 		},
 		autotag = {
 			enable = true, -- Enable auto-tagging for inline HTML in JS/TSX
+			filetypes = {
+				"html",
+				"javascript",
+				"typescript",
+				"svelte",
+				"vue",
+				"tsx",
+				"jsx",
+				"rescript",
+				"css",
+				"lua",
+				"xml",
+				"php",
+				"markdown",
+			},
 		},
 	},
-
-	config = function()
-		vim.api.nvim_create_autocmd("BufReadPost", {
-			group = vim.api.nvim_create_augroup("TSHighlight", { clear = true }),
-			pattern = "*",
-			command = "TSBufEnable highlight",
-		})
-	end,
 }

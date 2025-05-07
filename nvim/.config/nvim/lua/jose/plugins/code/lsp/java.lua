@@ -1,4 +1,3 @@
--- lua/jose/plugins/code/java.lua
 return {
 	"mfussenegger/nvim-jdtls",
 	ft = { "java" },
@@ -7,7 +6,6 @@ return {
 		"mfussenegger/nvim-dap",
 		"williamboman/mason.nvim", -- Needed for mason_registry
 		"neovim/nvim-lspconfig", -- Needed for basic LSP capabilities
-		"hrsh7th/cmp-nvim-lsp", -- Needed for cmp capabilities below
 		-- Optional but recommended dependencies:
 		"rcarriga/nvim-dap-ui", -- UI for DAP
 		"nvim-neotest/neotest", -- If using neotest integration
@@ -19,6 +17,10 @@ return {
 		local required_pkgs = { "jdtls", "java-debug-adapter", "java-test", "vscode-java-decompiler" }
 		local missing_pkgs = {}
 		local pkg_paths = {}
+
+		local lsp_handlers = require("jose.lsp.handlers")
+		local on_attach_base = lsp_handlers.on_attach_base
+		local map = lsp_handlers.map_lsp_key
 
 		for _, pkg_name in ipairs(required_pkgs) do
 			local pkg = mason_registry.get_package(pkg_name)
@@ -105,6 +107,7 @@ return {
 			local current_dir = vim.fn.fnamemodify(current_buf_path, ":h")
 			local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 			local root_dir = require("jdtls.setup").find_root(root_markers, current_dir)
+			local blink_cmp = require("blink.cmp")
 
 			if root_dir == "" or root_dir == vim.fn.expand("~") then
 				-- Avoid starting if not in a Java project relative to current file
@@ -125,7 +128,7 @@ return {
 			vim.list_extend(bundles, java_test_jars)
 			vim.list_extend(bundles, decompiler_jars)
 
-			local jdtls_extended_caps = require("jdtls").extendedClientCapabilities
+			local jdtls_extended_caps = require("jdtls.setup").extendedClientCapabilities
 			local extendedClientCapabilities = vim.deepcopy(jdtls_extended_caps) -- Use deepcopy
 			extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
@@ -154,9 +157,7 @@ return {
 				},
 				root_dir = root_dir,
 				-- Attach standard Neovim LSP client capabilities merged with CMP capabilities
-				capabilities = require("cmp_nvim_lsp").default_capabilities(
-					vim.lsp.protocol.make_client_capabilities()
-				),
+				capabilities = blink_cmp.get_lsp_capabilities(),
 				init_options = {
 					bundles = bundles,
 					extendedClientCapabilities = extendedClientCapabilities, -- Use the merged table
@@ -186,7 +187,7 @@ return {
 						-- },
 					},
 				},
-				on_attach = function(_, bufnr)
+				on_attach = function(client, bufnr)
 					vim.notify(
 						"JDTLS attached to buffer " .. bufnr .. " for project " .. project_name,
 						vim.log.levels.INFO
@@ -197,39 +198,16 @@ return {
 						require("jdtls.dap").setup_dap_main_class_configs()
 					end)
 
-					-- Standard LSP mappings
-					local function map(mode, lhs, rhs, desc)
-						vim.keymap.set(
-							mode,
-							lhs,
-							rhs,
-							{ silent = true, noremap = true, buffer = bufnr, desc = "LSP: " .. desc }
-						)
-					end
+					on_attach_base(client, bufnr)
 
-					-- Load telescope builtins only if Telescope is available (optional robustness)
-					local telescope_ok, telescope = pcall(require, "telescope.builtin")
-
-					-- Standard LSP mappings
-					map("n", "gD", vim.lsp.buf.declaration, "Go to Declaration")
-					map("n", "gd", vim.lsp.buf.definition, "Go to Definition")
-					-- Use Telescope for implementations if available
-					if telescope_ok then
-						map("n", "gi", telescope.lsp_implementations, "Go to Implementation (Telescope)")
-					else
-						map("n", "gi", vim.lsp.buf.implementation, "Go to Implementation")
-					end
-					-- Use Telescope for references if available
-					if telescope_ok then
-						map("n", "gr", telescope.lsp_references, "Go to References (Telescope)")
-					else
-						map("n", "gr", vim.lsp.buf.references, "Go to References")
-					end
-					-- map("n", "K", vim.lsp.buf.hover, "Hover")
-					map("n", "<C-k>", vim.lsp.buf.signature_help, "Signature Help")
-					map("n", "<leader>D", vim.lsp.buf.type_definition, "Type Definition")
-					map("n", "<leader>rn", vim.lsp.buf.rename, "Rename")
-					map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+					map("n", "<leader>sd", vim.diagnostic.open_float, "Show Line Diagnostics")
+					-- Also useful: Navigate diagnostics
+					map("n", "[d", function()
+						vim.diagnostic.jump({ count = -1, float = true })
+					end, "Go to Previous Diagnostic")
+					map("]d", function()
+						vim.diagnostic.jump({ count = 1, float = true })
+					end, "Go to Next Diagnostic")
 
 					-- JDTLS specific mappings
 					map("n", "<C-o>", jdtls.organize_imports, "Organize Imports")

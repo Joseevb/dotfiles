@@ -334,15 +334,6 @@ eval "$(zoxide init zsh)"
 # Greeeter
 fastfetch 
 
-if command -v checkupdates-with-aur > /dev/null 2>&1; then
-    pending_updates=$(checkupdates-with-aur)
-    if [ -n "$pending_updates" ]; then
-        echo "There are pending updates for the following packages:"
-        echo "$pending_updates"
-        echo "Please run 'paru' to update them."
-    fi
-fi
-
 # WSL specific config
 if grep -qE "(Microsoft|WSL)" /proc/version; then
     alias podman='podman-remote-static-linux_amd64'

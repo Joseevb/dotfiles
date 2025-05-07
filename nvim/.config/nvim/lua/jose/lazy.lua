@@ -15,6 +15,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "jose.plugins" },
 		{ import = "jose.plugins.code" },
+		{ import = "jose.plugins.code.lsp" },
 		{ import = "jose.plugins.ui" },
 		{ import = "jose.plugins.ai" },
 	},

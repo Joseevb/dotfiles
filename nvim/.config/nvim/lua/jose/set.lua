@@ -38,31 +38,31 @@ vim.opt.smartcase = true -- Case-sensitive if search query contains uppercase
 -- ================================
 -- Buffer and Tab Management
 -- ================================
-vim.opt.hidden = true -- Allow switching buffers without saving
-vim.opt.switchbuf = { "usetab", "newtab" } -- Reuse or open new tabs for buffers
-vim.opt.showtabline = 2 -- Always show the tabline
-
-vim.opt.sessionoptions:append("buffers") -- Persist buffers across sessions
-
--- Tabline customization: Show all open buffers
-vim.o.tabline = "%!v:lua.Tabline()"
-
-function _G.Tabline()
-	local s = ""
-	for i = 1, vim.fn.bufnr("$") do
-		if vim.fn.bufexists(i) == 1 and vim.fn.buflisted(i) == 1 then
-			local bufname = vim.fn.fnamemodify(vim.fn.bufname(i), ":t")
-			local bufnum = vim.fn.bufnr(i)
-			if bufname == "" then
-				bufname = "[No Name]"
-			end
-			local is_current = (i == vim.fn.bufnr("%"))
-			local hl = is_current and "%#TabLineSel#" or "%#TabLine#"
-			s = s .. hl .. " " .. bufnum .. ": " .. bufname .. " "
-		end
-	end
-	return s .. "%#TabLineFill#"
-end
+-- vim.opt.hidden = true -- Allow switching buffers without saving
+-- vim.opt.switchbuf = { "usetab", "newtab" } -- Reuse or open new tabs for buffers
+-- vim.opt.showtabline = 2 -- Always show the tabline
+--
+-- vim.opt.sessionoptions:append("buffers") -- Persist buffers across sessions
+--
+-- -- Tabline customization: Show all open buffers
+-- vim.o.tabline = "%!v:lua.Tabline()"
+--
+-- function _G.Tabline()
+-- 	local s = ""
+-- 	for i = 1, vim.fn.bufnr("$") do
+-- 		if vim.fn.bufexists(i) == 1 and vim.fn.buflisted(i) == 1 then
+-- 			local bufname = vim.fn.fnamemodify(vim.fn.bufname(i), ":t")
+-- 			local bufnum = vim.fn.bufnr(i)
+-- 			if bufname == "" then
+-- 				bufname = "[No Name]"
+-- 			end
+-- 			local is_current = (i == vim.fn.bufnr("%"))
+-- 			local hl = is_current and "%#TabLineSel#" or "%#TabLine#"
+-- 			s = s .. hl .. " " .. bufnum .. ": " .. bufname .. " "
+-- 		end
+-- 	end
+-- 	return s .. "%#TabLineFill#"
+-- end
 
 -- ================================
 -- Backup and Undo
@@ -83,6 +83,7 @@ vim.opt.isfname:append("@-@") -- Allow "@" in filenames
 -- ================================
 -- Folding
 -- ================================
+-- Will be managed by UFO plugin
 -- vim.opt.foldmethod = "expr" -- Use syntax-based folding
 -- vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
 -- -- Default to treesitter folding
@@ -98,19 +99,19 @@ vim.opt.isfname:append("@-@") -- Allow "@" in filenames
 -- 	end,
 -- })
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- ================================
 -- Lists and Special Characters
 -- ================================
-vim.opt.list = true -- Show invisible characters
-vim.opt.listchars = {
-	tab = "»·", -- Tab characters
-	trail = "·", -- Trailing spaces
-	extends = "→", -- Line too long
-	precedes = "←", -- Line continuation on left
-}
+-- vim.opt.list = true -- Show invisible characters
+-- vim.opt.listchars = {
+-- 	tab = "»·", -- Tab characters
+-- 	trail = "·", -- Trailing spaces
+-- 	extends = "→", -- Line too long
+-- 	precedes = "←", -- Line continuation on left
+-- }
 
 -- ================================
 -- Suggested Additions

@@ -47,26 +47,26 @@ vim.keymap.set("v", "<", "<gv", { desc = "Unindent selected block" })
 -- ================================
 -- Buffer Management
 -- ================================
-vim.keymap.set("n", "<leader>bn", vim.cmd.bnext, { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", vim.cmd.bprev, { desc = "Previous buffer" })
--- vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { desc = "Delete current buffer" })
-vim.keymap.set("n", "<leader>bl", vim.cmd.ls, { desc = "List all buffers" })
--- Function to go to a specific buffer by number
-local function goto_buffer()
-	vim.ui.input({ prompt = "Enter buffer number: " }, function(input)
-		if input then
-			local buffer_number = tonumber(input)
-			if buffer_number and vim.fn.bufexists(buffer_number) == 1 then
-				vim.cmd("buffer " .. buffer_number)
-			else
-				vim.notify("Invalid buffer number: " .. input, vim.log.levels.ERROR)
-			end
-		end
-	end)
-end
-
--- Keymap to prompt for buffer number and switch
-vim.keymap.set("n", "<leader>bb", goto_buffer, { desc = "Switch to buffer by number" })
+-- vim.keymap.set("n", "<leader>bn", vim.cmd.bnext, { desc = "Next buffer" })
+-- vim.keymap.set("n", "<leader>bp", vim.cmd.bprev, { desc = "Previous buffer" })
+-- -- vim.keymap.set("n", "<leader>bd", vim.cmd.bdelete, { desc = "Delete current buffer" })
+-- vim.keymap.set("n", "<leader>bl", vim.cmd.ls, { desc = "List all buffers" })
+-- -- Function to go to a specific buffer by number
+-- local function goto_buffer()
+-- 	vim.ui.input({ prompt = "Enter buffer number: " }, function(input)
+-- 		if input then
+-- 			local buffer_number = tonumber(input)
+-- 			if buffer_number and vim.fn.bufexists(buffer_number) == 1 then
+-- 				vim.cmd("buffer " .. buffer_number)
+-- 			else
+-- 				vim.notify("Invalid buffer number: " .. input, vim.log.levels.ERROR)
+-- 			end
+-- 		end
+-- 	end)
+-- end
+--
+-- -- Keymap to prompt for buffer number and switch
+-- vim.keymap.set("n", "<leader>bb", goto_buffer, { desc = "Switch to buffer by number" })
 
 -- ================================
 -- Selection
