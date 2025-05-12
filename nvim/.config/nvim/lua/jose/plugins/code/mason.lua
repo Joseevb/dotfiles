@@ -4,27 +4,9 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
+	lazy = false,
 	config = function()
 		require("mason").setup()
-
-		require("mason-lspconfig").setup({
-			automatic_installation = true,
-			ensure_installed = {
-				"cssls",
-				"eslint",
-				"html",
-				"jsonls",
-				"yamlls",
-				"bashls",
-				"dockerls",
-				"graphql",
-				"kotlin_language_server",
-				"pyright",
-				"tailwindcss",
-				"emmet_language_server",
-				"intelephense",
-			},
-		})
 
 		require("mason-tool-installer").setup({
 			ensure_installed = {

@@ -46,7 +46,7 @@ return {
 			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			-- Adjusts spacing to ensure icons are aligned
 			nerd_font_variant = "mono",
-			border = { "rounded", "double", "shadow", "padded" },
+			-- border = "rounded",
 		},
 
 		completion = {
@@ -70,14 +70,14 @@ return {
 				enabled = true,
 			},
 			trigger = {
-				show_on_trigger_characters = true,
+				show_on_trigger_character = true,
 			},
 		},
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "codecompanion", "lsp", "path", "snippets", "buffer" },
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

@@ -60,7 +60,9 @@ return {
 			"K",
 			function()
 				local winid = require("ufo").peekFoldedLinesUnderCursor()
-				if winid then
+				if not winid then
+					vim.lsp.buf.hover()
+				else
 					require("ufo").peekFoldedLinesUnderCursor()
 				end
 			end,

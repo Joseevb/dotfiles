@@ -3,6 +3,16 @@ return {
 	event = "VeryLazy",
 	opts_extend = { "spec" },
 	opts = {
+		triggers = {
+			{
+				"<leader>",
+				"[",
+			},
+			{
+				"<leader>",
+				"]",
+			},
+		}, -- Specify the key prefixes which-key should handle
 		preset = "helix",
 		defaults = {},
 		spec = {
@@ -60,14 +70,6 @@ return {
 			desc = "Window Hydra Mode (which-key)",
 		},
 	},
-	config = function(_, opts)
-		local wk = require("which-key")
-		wk.setup(opts)
-		if not vim.tbl_isempty(opts.defaults) then
-			LazyVim.warn("which-key: opts.defaults is deprecated. Please use opts.spec instead.")
-			wk.register(opts.defaults)
-		end
-	end,
 }
 -- return {
 -- 	"folke/which-key.nvim",

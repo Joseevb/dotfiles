@@ -1,13 +1,9 @@
 theme = catppuccin-macchiato
 background-opacity=0.9
 
-window-decoration = false
-gtk-titlebar = false
-shell-integration = none
-title = ""
 
 confirm-close-surface = false
-fullscreen = true
+fullscreen = false
 
 keybind = ctrl+shift+alt+enter=toggle_fullscreen 
 keybind = ctrl+enter=unbind
