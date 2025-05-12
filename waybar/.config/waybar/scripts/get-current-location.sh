@@ -6,7 +6,7 @@ LOCATION_COORDINATES_JSON=$(curl -s http://ip-api.com/json?fields=lat,lon)
 
 LAT=$(echo $LOCATION_COORDINATES_JSON | jq -r .lat)
 LON=$(echo $LOCATION_COORDINATES_JSON | jq -r .lon)
-CITY=$(echo $LOCATION_JSON | jq -r .city)
+CITY=$(echo "$LOCATION_JSON" | jq -r .city | sed 's/ñ/n/g')
 ENCODED_CITY=$(echo "$CITY" | sed 's/ /%20/g')
 
 # Handle arguments

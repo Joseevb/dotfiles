@@ -48,18 +48,18 @@ install_packages() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-install_oh-my-zsh() {
-    echo "Installing oh-my-zsh..."  
+#install_oh-my-zsh() {
+#    echo "Installing oh-my-zsh..."  
+#
+#    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+#    rm -rf ~/.zshrc
+#}
 
-    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-    rm -rf ~/.zshrc
-}
-
-install_oh-my-posh() {
-    echo "Installing oh-my-posh..."
-
-    curl -s https://ohmyposh.dev/install.sh | bash -s
-}
+#install_oh-my-posh() {
+#    echo "Installing oh-my-posh..."
+#
+#    curl -s https://ohmyposh.dev/install.sh | bash -s
+#}
 
 # Function to install Homebrew
 install_homebrew() {

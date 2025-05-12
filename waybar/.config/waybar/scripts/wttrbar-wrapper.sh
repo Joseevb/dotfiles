@@ -16,7 +16,6 @@
 
 
 LOCATION=$(sh /home/jose/.config/waybar/scripts/get-current-location.sh -c)
-echo $LOCATION
-WEATHER=$(sh /home/jose/.config/waybar/tools/wttrbar/target/release/wttrbar --location "$LOCATION")
+WEATHER=$(wttrbar --location "$LOCATION")
 
 echo $WEATHER

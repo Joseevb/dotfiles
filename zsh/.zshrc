@@ -178,51 +178,6 @@ if which lazydocker &>/dev/null; then
     alias lazypod='DOCKER_HOST=unix:///mnt/wsl/podman-sockets/podman-machine-default/podman-root.sock lazydocker'
 fi
 
-# function l() {
-#         local dirs=() files=() hidden_dirs=() hidden_files=()
-#
-#     # Process non-hidden entries
-#     for entry in *; do
-#         if [[ -e "$entry" ]]; then
-#             if [[ -d "$entry" ]]; then
-#                 dirs+=("$entry")
-#             else
-#                 files+=("$entry")
-#             fi
-#         fi
-#     done
-#
-#     # Process hidden entries (excluding . and ..)
-#     for entry in .*; do
-#         if [[ "$entry" == "." || "$entry" == ".." ]]; then
-#             continue
-#         fi
-#         if [[ -e "$entry" ]]; then
-#             if [[ -d "$entry" ]]; then
-#                 hidden_dirs+=("$entry")
-#             else
-#                 hidden_files+=("$entry")
-#             fi
-#         fi
-#     done
-#
-#     # Print each category with formatted output
-#     print_section() {
-#         if [[ $# -gt 1 ]]; then
-#             echo "$1:"
-#             shift
-#             printf -- '- %s\n' "$@"
-#         fi
-#     }
-#
-#     print_section "Directories" "${dirs[@]}"
-#     print_section "Files" "${files[@]}"
-#     print_section "Hidden directories" "${hidden_dirs[@]}"
-#     print_section "Hidden files" "${hidden_files[@]}"
-# }
-#
-# unalias l
-
 # Enable vim in cli
 bindkey -v
 
@@ -281,22 +236,7 @@ function y() {
 # Prettierd
 export PRETTIERD_DEFAULT_CONFIG=~/.config/prettierd/.prettierrc.json
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jose/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jose/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/jose/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jose/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath+=~/.zsh/completions
@@ -304,50 +244,8 @@ fpath+=~/.zsh/completions
 eval "$(zoxide init zsh)"
 
 # Greeter
-
-# if [[ ! -f test_image.png ]]; then
-#     touch test_image.png
-# fi
-#
-# if [[ -f test_image.png ]]; then
-#
-#     terminal=$(ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$))
-#
-#     case "$terminal" in
-#         *kitty* | *ghostty*)
-#             if command -v fastfetch &>/dev/null; then
-#                 fastfetch
-#             elif command -v neofetch &>/dev/null; then
-#                 neofetch
-#             fi
-#             ;;
-#         *)
-#             if command -v fastfetch &>/dev/null; then
-#                 fastfetch --logo-type builtin
-#             elif command -v neofetch &>/dev/null; then
-#                 neofetch --source ascii
-#             fi
-#             ;;
-#     esac
-#     rm -f test_image.png
-# fi
-# Greeeter
+sleep 0.1
 fastfetch 
-
-# WSL specific config
-if grep -qE "(Microsoft|WSL)" /proc/version; then
-    alias podman='podman-remote-static-linux_amd64'
-
-    for i in "/mnt/wslg/runtime-dir/"*; do
-      if [ ! -L "$XDG_RUNTIME_DIR$(basename "$i")" ]; then
-        [ -d "$XDG_RUNTIME_DIR$(basename "$i")" ] && rm -r "$XDG_RUNTIME_DIR$(basename "$i")"
-        ln -s "$i" "$XDG_RUNTIME_DIR$(basename "$i")"
-      fi
-    done
-
-    eval $($HOME/wsl2-ssh-agent)
-fi
-
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

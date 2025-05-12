@@ -1,0 +1,113 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    // "width": 1280, // Waybar width
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "custom/music"
+    ],
+    "modules-right": [
+        "custom/weather",
+        "custom/kblayout",
+        "pulseaudio",
+        "clock#date",
+        "clock",
+        "tray",
+        "custom/lock",
+        "custom/power",
+        "custom/notification"
+    ],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "sort-by-name": true,
+        "format": " {} "
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    },
+    "custom/weather": {
+        "format": "{}°",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "/home/jose/.config/waybar/scripts/wttrbar-wrapper.sh",
+        "return-type": "json"
+    },
+    "custom/music": {
+        "format": "  {}",
+        "escape": true,
+        "interval": 5,
+        "tooltip": true,
+        "exec": "playerctl metadata --format '{{ artist }} - {{ title }}'",
+        "on-click": "playerctl play-pause",
+        "max-length": 50
+    },
+    "clock": {
+        "interval": 60,
+        "format": " {:%H:%M}",
+        "tooltip": true,
+        "exec": "./scripts/clock_tooltip.sh"
+    },
+    "clock#date": {
+        "format": "{:%d.%m.%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "custom/kblayout": {
+        "exec": "~/.config/waybar/scripts/kblayout.sh",
+        "on-click": "setxkbmap -query | grep -q 'us' && setxkbmap es || setxkbmap us",
+        "interval": 1
+    },
+    "pulseaudio": {
+        "scroll-step": 1, // %, can be a float
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": [
+                "",
+                "",
+                " "
+            ]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
+    },
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "hyprlock &",
+        "format": ""
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "  ",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "  ",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "  ",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": "  "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}
