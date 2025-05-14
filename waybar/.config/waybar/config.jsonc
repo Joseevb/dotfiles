@@ -16,8 +16,6 @@
         "clock#date",
         "clock",
         "tray",
-        "custom/lock",
-        "custom/power",
         "custom/notification"
     ],
     "hyprland/workspaces": {
