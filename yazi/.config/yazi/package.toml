@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "wylie102/duckdb"
-rev = "2d145ce"
-hash = "c003d353852bc35212fa365e9c1b0a7"
+rev = "02f902d"
+hash = "9893839d5134aaecf6fafbeff6cac18e"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
@@ -15,15 +15,15 @@ hash = "747a700c90fffc5b187a6094fd0661b0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2730199"
+rev = "55bf699"
 hash = "1f3dad061209081a6b04dd6ff2cb06c7"
 
 [[plugin.deps]]
 use = "llanosrocas/yaziline"
-rev = "e06c47f"
-hash = "7df84299e89ffefd4686d1e20a295c8a"
+rev = "1342efe"
+hash = "a84a339953a568fee1d8beb63e6dca73"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "68326b4"
+rev = "02f3fc6"
 hash = "3ec21bcfd2735cfcbab61faaf43e59e4"
