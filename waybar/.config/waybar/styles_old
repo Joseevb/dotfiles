@@ -1,0 +1,96 @@
+@import "macchiato.css";
+
+* {
+	font-family: "FiraCode Nerd Font Mono", "Symbols Nerd Font", sans-serif;
+	font-size: 1rem;
+	min-height: 0;
+}
+
+#waybar {
+	background: transparent;
+	color: @text;
+	margin: 0px 5px;
+}
+
+#workspaces {
+	border-radius: 1rem;
+	margin: 10px;
+	background-color: @surface0;
+	margin-left: 10px;
+}
+
+#workspaces button {
+	color: @lavender;
+	border-radius: 1rem;
+	padding: 0.4rem;
+}
+
+#workspaces button.active {
+	color: @sky;
+	border-radius: 1rem;
+}
+
+#workspaces button:hover {
+	color: @sapphire;
+	border-radius: 1rem;
+}
+
+#custom-music,
+#tray,
+#backlight,
+#clock,
+#battery,
+#pulseaudio,
+#custom-kblayout,
+#custom-weather,
+#custom-lock,
+#custom-notification,
+#custom-power {
+	background-color: @surface0;
+	padding: 0px 1rem;
+}
+
+#clock {
+	color: @blue;
+}
+
+#pulseaudio {
+	color: @maroon;
+}
+
+#custom-music {
+	color: @mauve;
+	border-radius: 1rem;
+}
+
+#custom-weather {
+	font-size: 1.2rem;
+	color: @blue;
+	border-radius: 1rem 0px 0px 1rem;
+	margin-left: 0.5rem;
+}
+
+#custom-kblayout {
+	font-size: 1rem;
+	color: @blue;
+	padding: 10px 1rem;
+	background-color: @surface0;
+}
+
+#custom-lock {
+	border-radius: 1rem 0px 0px 1rem;
+	color: @lavender;
+	margin-left: 0.5rem;
+}
+
+#custom-power {
+	margin-right: 0.5rem;
+	border-radius: 0px 0rem 1rem 0px;
+	color: @red;
+}
+
+#custom-notification {
+	font-size: 1.2rem;
+	color: @blue;
+	padding: 5px 0.5rem;
+}

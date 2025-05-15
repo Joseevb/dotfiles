@@ -4,10 +4,11 @@
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": [
-        "hyprland/workspaces"
+        "tray",
+        "custom/music"
     ],
     "modules-center": [
-        "custom/music"
+        "hyprland/workspaces"
     ],
     "modules-right": [
         "custom/weather",
@@ -15,13 +16,15 @@
         "pulseaudio",
         "clock#date",
         "clock",
-        "tray",
         "custom/notification"
     ],
     "hyprland/workspaces": {
-        "disable-scroll": true,
-        "sort-by-name": true,
-        "format": " {} "
+        "format": "{id}",
+        "on-click": "activate",
+        "sort-by-number": true
+        // "persistent-workspaces": {
+        //     "*": 5
+        // }
     },
     "tray": {
         "icon-size": 21,
@@ -59,14 +62,20 @@
         "interval": 1
     },
     "pulseaudio": {
-        "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
-        "format-muted": "",
+        "tooltip": true,
+        "format-muted": "󰖁 {format_source}",
         "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
             "default": [
                 "",
                 "",
-                " "
+                ""
             ]
         },
         "on-click": "pavucontrol"
