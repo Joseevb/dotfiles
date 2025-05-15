@@ -1,86 +1,76 @@
 {
 	"$schema": "/etc/xdg/swaync/configSchema.json",
 	"positionX": "right",
-	"positionY": "top",
-	"layer": "overlay",
-	"control-center-layer": "top",
-	"layer-shell": true,
-	"cssPriority": "user",
-	"control-center-margin-top": 13,
+	"positionY": "bottom",
+	"layer": "top",
+	"cssPriority": "application",
+	"control-center-margin-top": 0,
 	"control-center-margin-bottom": 0,
-	"control-center-margin-right": 14,
+	"control-center-margin-right": 0,
 	"control-center-margin-left": 0,
-	"notification-2fa-action": true,
-	"notification-inline-replies": false,
-	"notification-icon-size": 24,
+	"notification-icon-size": 100,
 	"notification-body-image-height": 100,
 	"notification-body-image-width": 200,
-	"notification-window-width": 300,
-	"timeout": 6,
-	"timeout-low": 3,
+	"timeout": 10,
+	"timeout-low": 5,
 	"timeout-critical": 0,
-	"fit-to-screen": false,
-	"control-center-width": 400,
-	"control-center-height": 720,
+	"fit-to-screen": true,
+	"control-center-width": 500,
+	"control-center-height": 600,
+	"notification-window-width": 500,
 	"keyboard-shortcuts": true,
 	"image-visibility": "when-available",
 	"transition-time": 200,
 	"hide-on-clear": false,
 	"hide-on-action": true,
-	"script-fail-notify": true,
-	"widgets": [
-		"dnd",
-		"buttons-grid",
-		"mpris",
-		"volume",
-		"title",
-		"notifications"
-	],
+	"widgets": ["title", "notifications", "dnd", "mpris", "buttons-grid"],
 	"widget-config": {
 		"title": {
 			"text": "Notifications",
 			"clear-all-button": true,
-			"button-text": "Clear"
+			"button-text": "Clear All"
 		},
 		"dnd": {
 			"text": "Do Not Disturb"
 		},
 		"label": {
 			"max-lines": 1,
-			"text": "Notification"
+			"text": "Notification Center"
 		},
 		"mpris": {
-			"image-size": 50,
-			"image-radius": 0
-		},
-		"volume": {
-			"label": "󰕾"
+			"image-size": 96,
+			"image-radius": 12,
+			"blur": true
 		},
 		"buttons-grid": {
 			"actions": [
 				{
-					"label": "󰝟",
-					"command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+					"label": "󰐥",
+					"command": "systemctl poweroff"
 				},
 				{
-					"label": "󰂯",
-					"command": "blueman-manager"
+					"label": "󰜉",
+					"command": "systemctl reboot"
 				},
 				{
-					"label": "",
-					"command": "hyrplock &"
+					"label": "󰌾",
+					"command": "$HOME/.config/sway/lock.sh"
+				},
+				{
+					"label": "󰍃",
+					"command": "swaymsg exit"
 				},
 				{
 					"label": "",
 					"command": "systemctl suspend"
 				},
 				{
-					"label": "",
-					"command": "reboot -h now"
+					"label": "󰛳",
+					"command": "nm-connection-editor"
 				},
 				{
-					"label": "",
-					"command": "shutdown -h now"
+					"label": "󰂯",
+					"command": "blueman-manager"
 				}
 			]
 		}
