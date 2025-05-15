@@ -19,6 +19,7 @@ return {
 		"rcarriga/nvim-dap-ui", -- UI for DAP
 		"nvim-neotest/neotest", -- If using neotest integration
 		"rcasia/neotest-java", -- If using neotest integration
+		-- "JavaHello/spring-boot.nvim", -- If using spring-boot integration
 	},
 	config = function()
 		local lsp_handlers = require("jose.lsp.handlers")
@@ -132,6 +133,7 @@ return {
 			vim.list_extend(bundles, debug_adapter_jars)
 			vim.list_extend(bundles, java_test_jars)
 			vim.list_extend(bundles, decompiler_jars) -- Add decompiler bundle
+			vim.list_extend(bundles, require("spring_boot").java_extensions())
 
 			-- JDTLS extended capabilities
 			local jdtls_extended_caps = require("jdtls.setup").extendedClientCapabilities
@@ -195,9 +197,9 @@ return {
 					-- end)
 
 					-- Schedule main class configurations (might be needed for test/run buttons)
-					vim.schedule(function()
-						require("jdtls.dap").setup_dap_main_class_configs()
-					end)
+					-- vim.schedule(function()
+					-- 	require("jdtls.dap").setup_dap_main_class_configs()
+					-- end)
 
 					-- Apply base LSP mappings from handlers.lua
 					on_attach_base(client, bufnr)
@@ -225,7 +227,7 @@ return {
 					map("n", "<leader>el", jdtls.extract_local_variable, "Extract Local Variable")
 					map("n", "<leader>ek", jdtls.extract_class, "Extract Class")
 					map("n", "<leader>er", jdtls.rename_file, "Rename Compilation Unit")
-					map("n", "<leader>o", jdtls.open_main_class, "Open Main Class") -- Be aware this conflicts with default 'o' in normal mode
+					map("n", "<leader>om", jdtls.open_main_class, "Open Main Class") -- Be aware this conflicts with default 'o' in normal mode
 
 					-- DAP related mappings (require nvim-dap)
 					map("n", "<leader>dt", function()

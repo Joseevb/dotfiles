@@ -17,7 +17,7 @@ return {
 			json = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "prettierd", "prettier", stop_after_first = true },
 			markdown = { "prettierd", "prettier", stop_after_first = true },
-			xml = { "prettierd", "prettier", stop_after_first = true },
+			xml = { "xmlformatter" },
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			php = { "prettier", "pretty-php" },
@@ -32,13 +32,17 @@ return {
 				-- We likely don't need stdin = true/false here as the "-" handles it
 				-- require_cwd = false -- Might be needed if CWD issues arise, but try without first
 			},
+			xmlformatter = {
+				command = "xmlformat",
+				args = { "--indent", "4", "-" },
+			},
 			google_java_format = {
 				prepend_args = { "--aosp" },
 				timeout_ms = 4000,
 			},
 			clang_format = {
 				command = "clang-format",
-				args = {
+				prepend_args = {
 					"--style",
 					"{IndentWidth: 4, TabWidth: 4, UseTab: Never}", -- Inline configuration for 4 spaces and no tabs
 				},
