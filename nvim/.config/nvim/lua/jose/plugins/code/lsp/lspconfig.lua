@@ -124,7 +124,6 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 		-- "folke/neoconf.nvim", -- Assuming neoconf is set up elsewhere
 		"nvim-lua/plenary.nvim",
-		"stevearc/dressing.nvim", -- Optional: Better UI for vim.ui.select
 	},
 
 	opts = {

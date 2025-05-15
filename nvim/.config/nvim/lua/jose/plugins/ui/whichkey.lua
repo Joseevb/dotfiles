@@ -3,16 +3,16 @@ return {
 	event = "VeryLazy",
 	opts_extend = { "spec" },
 	opts = {
-		triggers = {
-			{
-				"<leader>",
-				"[",
-			},
-			{
-				"<leader>",
-				"]",
-			},
-		}, -- Specify the key prefixes which-key should handle
+		-- triggers = {
+		-- 	{
+		-- 		"<leader>",
+		-- 		"[",
+		-- 	},
+		-- 	{
+		-- 		"<leader>",
+		-- 		"]",
+		-- 	},
+		-- }, -- Specify the key prefixes which-key should handle
 		preset = "helix",
 		defaults = {},
 		spec = {
