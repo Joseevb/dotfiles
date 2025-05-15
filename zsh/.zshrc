@@ -128,7 +128,7 @@ alias tm='tmux'
 # must install fd first using `sudo apt install fd-find` and then `ln -s $(which fdfind) ~/.local/bin/fd`
 alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
-alias ls="eza --icons=always"
+alias ls="eza --icons=always -s=type"
 alias l="ls -1"
 
 # alias tree="l -T"

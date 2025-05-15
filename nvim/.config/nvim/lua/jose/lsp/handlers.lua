@@ -3,10 +3,10 @@
 local M = {}
 
 M.map_lsp_key = function(bufnr, mode, lhs, rhs, desc)
-	vim.keymap.set(mode, lhs, rhs, { silent = true, noremap = true, buffer = bufnr, desc = "LSP: " .. desc })
+	vim.keymap.set(mode, lhs, rhs, { silent = true, noremap = true, buffer = bufnr, desc = "LSP: " .. (desc or "") })
 end
 
-M.on_attach_base = function(client, bufnr)
+M.on_attach_base = function(_, bufnr)
 	local map_lsp_key = M.map_lsp_key
 
 	-- Common LSP Mappings
