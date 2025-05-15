@@ -1,5 +1,4 @@
 theme = catppuccin-macchiato
-background-opacity=0.9
 
 confirm-close-surface = false
 fullscreen = false

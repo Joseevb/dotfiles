@@ -8,7 +8,8 @@
         "custom/music"
     ],
     "modules-center": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "hyprland/window"
     ],
     "modules-right": [
         "custom/weather",
@@ -22,9 +23,11 @@
         "format": "{id}",
         "on-click": "activate",
         "sort-by-number": true
-        // "persistent-workspaces": {
-        //     "*": 5
-        // }
+    },
+    "hyprland/window": {
+        "format": "{title:.30}",
+        "icon": true,
+        "icon-size": 20
     },
     "tray": {
         "icon-size": 21,
