@@ -7,6 +7,7 @@ return {
 	init = function()
 		vim.g.barbar_auto_setup = true
 	end,
+	event = "BufEnter", -- Load plugin automatically when entering a buffer
 	opts = {
 		-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
 		-- animation = true,
@@ -34,10 +35,10 @@ return {
 				-- Requires `nvim-web-devicons` if `true`
 				enabled = true,
 			},
-			separator = { left = "▎", right = "" },
+			separator = { left = "▎" },
 
 			-- If true, add an additional separator at the end of the buffer list
-			separator_at_end = true,
+			separator_at_end = false,
 
 			-- Configure the icons on the bufferline when modified or pinned.
 			-- Supports all the base icon options.

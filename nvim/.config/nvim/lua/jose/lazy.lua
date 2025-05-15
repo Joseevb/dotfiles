@@ -18,5 +18,6 @@ require("lazy").setup({
 		{ import = "jose.plugins.code.lsp" },
 		{ import = "jose.plugins.ui" },
 		{ import = "jose.plugins.ai" },
+		{ import = "jose.plugins.ai.codecompanion" },
 	},
 })

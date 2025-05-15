@@ -9,7 +9,7 @@ return {
 	keys = {
 		-- Use the defined local variables inside the functions
 		{
-			"<leader>ah",
+			"<leader>ha",
 			function()
 				require("harpoon"):list():add()
 				vim.notify("Harpooned file: " .. vim.fn.expand("%:p"), vim.log.levels.INFO)
