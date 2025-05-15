@@ -183,6 +183,8 @@ label:focus {
 	background: rgba(30, 30, 46, 1);
 	padding: 0 7px;
 	border: 2px solid rgba(180, 190, 254, 0.5);
+	margin-left: 15px;
+	margin-right: 15px;
 }
 
 #custom-music {
