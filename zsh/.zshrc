@@ -258,6 +258,9 @@ fpath+=~/.zsh/completions
 
 eval "$(zoxide init zsh)"
 
+# Pipx
+eval "$(register-python-argcomplete pipx)"
+
 # Greeter
 sleep 0.1
 fastfetch 
