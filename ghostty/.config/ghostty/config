@@ -1,9 +1,34 @@
-theme = catppuccin-macchiato
+theme = catppuccin-mocha
+shell-integration = zsh
+mouse-hide-while-typing = true
+scrollback-limit = 1000000
 
 confirm-close-surface = false
 fullscreen = false
+link-url = true
+gtk-tabs-location = bottom
+shell-integration-features = no-cursor,sudo,no-title
+
+auto-update = download
+window-save-state = always
+
+font-family = "FiraCode Nerd Font Propo"
+font-size = 12
+
+copy-on-select = clipboard
 
 keybind = ctrl+shift+alt+enter=toggle_fullscreen 
 keybind = ctrl+enter=unbind
 
-font-family = "FiraCode Nerd Font Propo"
+# keybind = ctrl+a>n=new_tab
+# keybind = ctrl+alt+q=close_surface
+# keybind = ctrl+l=next_tab
+# keybind = ctrl+h=previous_tab
+# keybind = ctrl+|=new_split:right
+# keybind = ctrl+_=new_split:down
+# keybind = alt+h=goto_split:left
+# keybind = alt+j=goto_split:down
+# keybind = alt+k=goto_split:up
+# keybind = alt+l=goto_split:right
+
+keybind = ctrl+`=toggle_window_decorations

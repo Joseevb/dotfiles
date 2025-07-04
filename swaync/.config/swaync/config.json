@@ -23,7 +23,7 @@
 	"transition-time": 200,
 	"hide-on-clear": false,
 	"hide-on-action": true,
-	"widgets": ["title", "notifications", "dnd", "mpris", "buttons-grid"],
+	"widgets": ["buttons-grid", "title", "notifications", "dnd", "mpris"],
 	"widget-config": {
 		"title": {
 			"text": "Notifications",
@@ -54,11 +54,11 @@
 				},
 				{
 					"label": "󰌾",
-					"command": "$HOME/.config/sway/lock.sh"
+					"command": "hyprlock"
 				},
 				{
 					"label": "󰍃",
-					"command": "swaymsg exit"
+					"command": "hyprctl dispatch exit "
 				},
 				{
 					"label": "",

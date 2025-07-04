@@ -1,12 +1,4 @@
 -- lua/jose/plugins/code/lsp/java.lua
-
--- Proposed Fixes:
--- 1. Removed the direct call to setup_jdtls() at the end of the config function.
---    JDTLS will now only start when the FileType autocmd triggers (i.e., when opening a .java file).
--- 2. Removed duplicate diagnostic mappings as they are already included via on_attach_base.
--- 3. Removed duplicate jdtls.organize_imports and jdtls.code_action mappings.
--- 4. Removed the <C-o> mapping as it conflicts with Neovim's jump list and is duplicated by <leader>jo.
-
 return {
 	"mfussenegger/nvim-jdtls",
 	ft = { "java" }, -- Load only for java files

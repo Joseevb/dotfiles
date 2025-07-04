@@ -20,24 +20,26 @@ slider {
 	background-color: #8aadf4;
 }
 
+/* MODIFIED SECTION FOR FLOATING NOTIFICATIONS from previous request */
 .floating-notifications.background .notification-row .notification-background {
 	box-shadow:
 		0 0 8px 0 rgba(0, 0, 0, 0.8),
-		inset 0 0 0 1px #363a4f;
-	border-radius: 12.6px;
+		inset 0 0 0 1px #363a4f; /* This acts as a 1px border */
+	border-radius: 1.5rem; /* << MODIFIED for more pronounced rounding */
 	margin: 18px;
 	background-color: #24273a;
 	color: #cad3f5;
-	padding: 0;
+	padding: 3rem; /* << MODIFIED for 3rem padding */
 }
 
 .floating-notifications.background
 	.notification-row
 	.notification-background
 	.notification {
-	padding: 7px;
-	border-radius: 12.6px;
+	padding: 0; /* << MODIFIED to prevent double padding */
+	border-radius: 0; /* << MODIFIED as parent now provides main rounded shape */
 }
+/* END OF MODIFIED SECTION FOR FLOATING NOTIFICATIONS */
 
 .floating-notifications.background
 	.notification-row
@@ -155,16 +157,21 @@ slider {
 	color: #24273a;
 }
 
+/* === MODIFIED .control-center FOR NOTIFICATION SHELF === */
 .control-center {
-	box-shadow:
-		0 0 8px 0 rgba(0, 0, 0, 0.8),
-		inset 0 0 0 1px #363a4f;
-	border-radius: 12.6px;
-	margin: 18px;
-	background-color: #24273a;
-	color: #cad3f5;
-	padding: 14px;
+	box-shadow: inset 0 0 0 1px #494d64; /* Subtle border */
+	border-radius: 1.6rem; /* Increased for rounder look */
+	margin: 18px; /* Existing style for floating */
+	background-color: rgba(
+		36,
+		39,
+		58,
+		0.85
+	); /* #24273a (base) with 85% opacity */
+	color: #cad3f5; /* Existing text color */
+	padding: 1.6rem; /* Increased for more spacious padding */
 }
+/* === END OF MODIFIED .control-center === */
 
 .control-center .widget-title > label {
 	color: #cad3f5;
@@ -192,7 +199,7 @@ slider {
 }
 
 .control-center .notification-row .notification-background {
-	border-radius: 7px;
+	border-radius: 7px; /* This is for notifications *inside* the control center */
 	color: #cad3f5;
 	background-color: #363a4f;
 	box-shadow: inset 0 0 0 1px #494d64;
@@ -302,6 +309,7 @@ slider {
 }
 
 .close-button {
+	/* General close button style, might affect floating notif close buttons too */
 	border-radius: 6.3px;
 }
 
@@ -416,6 +424,7 @@ slider {
 
 .widget-buttons-grid {
 	padding-top: 1rem;
+	margin-bottom: 2rem;
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button label {

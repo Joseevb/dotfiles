@@ -184,10 +184,6 @@ tree() {
 alias ginit='g init && gaa && gcam "initialized project"'
 alias glg="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 
-if which lazydocker &>/dev/null; then
-    alias lazypod='DOCKER_HOST=unix:///mnt/wsl/podman-sockets/podman-machine-default/podman-root.sock lazydocker'
-fi
-
 # Enable vim in cli
 bindkey -v
 
@@ -262,7 +258,6 @@ eval "$(zoxide init zsh)"
 eval "$(register-python-argcomplete pipx)"
 
 # Greeter
-sleep 0.1
 fastfetch 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -272,3 +267,10 @@ export SDKMAN_DIR="$HOME/.sdkman"
 tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
 add-zsh-hook chpwd tmux-git-autofetch
     
+# pnpm
+export PNPM_HOME="/home/jose/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
