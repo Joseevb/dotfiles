@@ -1,0 +1,14 @@
+return {}
+-- return {
+-- 	"m4xshen/hardtime.nvim",
+-- 	lazy = false,
+-- 	dependencies = { "MunifTanjim/nui.nvim" },
+-- 	opts = {
+-- 		resetting_keys = {
+-- 			["h"] = { "", "i" },
+-- 			["j"] = { "", "i" },
+-- 			["k"] = { "", "i" },
+-- 			["l"] = { "", "i" },
+-- 		},
+-- 	},
+-- }

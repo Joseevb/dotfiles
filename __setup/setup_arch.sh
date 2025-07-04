@@ -48,18 +48,6 @@ install_packages() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-install_oh-my-zsh() {
-    echo "Installing oh-my-zsh..."  
-
-    sh -c "$(wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
-    rm -rf ~/.zshrc
-}
-
-install_oh-my-posh() {
-    echo "Installing oh-my-posh..."
-
-    curl -s https://ohmyposh.dev/install.sh | bash -s
-}
 
 # Function to install Homebrew
 install_homebrew() {
@@ -150,8 +138,6 @@ echo "Welcome to the work environment setup script!"
 confirm "Install paru for package management?" && install_paru
 confirm "Install required packages?" && install_packages
 confirm "Install Homebrew?" && install_homebrew
-confirm "Install oh-my-zsh?" && install_oh-my-zsh
-confirm "Install oh-my-posh?" && install_oh-my-posh
 confirm "Install zsh plugins?" && install_zsh_plugins
 confirm "Install SDKMAN?" && install_sdkman
 confirm "Install Conda?" && install_conda

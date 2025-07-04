@@ -22,9 +22,6 @@ return {
 		-- "JavaHello/spring-boot.nvim", -- If using spring-boot integration
 	},
 	config = function()
-		local lsp_handlers = require("jose.lsp.handlers")
-		local on_attach_base = lsp_handlers.on_attach_base -- Base LSP keymaps
-		local map = lsp_handlers.map_lsp_key -- Keymap helper
 		local mason_path = vim.fn.expand("$MASON/share/") -- Standard Mason install directory
 
 		-- --- Setup Variables ---
@@ -187,7 +184,15 @@ return {
 					},
 				},
 				-- on_attach function: Called when the LSP client attaches to a buffer
-				on_attach = function(client, bufnr)
+				on_attach = function(_, bufnr)
+					local map = function(mode, lhs, rhs, desc)
+						vim.keymap.set(
+							mode,
+							lhs,
+							rhs,
+							{ silent = true, noremap = true, buffer = bufnr, desc = "LSP: " .. (desc or "") }
+						)
+					end
 					-- Setup DAP integration for this client
 					-- Note: setup_dap_main_class_configs seems to be causing keymap errors on attach.
 					-- Commenting it out as a temporary fix.
@@ -202,10 +207,10 @@ return {
 					-- end)
 
 					-- Apply base LSP mappings from handlers.lua
-					on_attach_base(client, bufnr)
+					-- on_attach_base(client, bufnr)
 
 					-- JDTLS specific mappings
-					map("n", "<C-o>", jdtls.organize_imports, "Organize Imports")
+					map("n", "<leader>co", jdtls.organize_imports, "Organize Imports")
 
 					map("n", "<leader>ev", function()
 						jdtls.extract_variable({ visual = false })

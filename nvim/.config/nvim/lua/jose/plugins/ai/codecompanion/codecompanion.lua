@@ -1,3 +1,15 @@
+local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", {})
+
+vim.api.nvim_create_autocmd({ "User" }, {
+	pattern = "CodeCompanionRequest*",
+	group = group,
+	callback = function(request)
+		if request.match == "CodeCompanionRequestStarted" then
+			print(vim.inspect(request.data))
+		end
+	end,
+})
+
 return {
 	"olimorris/codecompanion.nvim",
 	opts = {
@@ -22,6 +34,22 @@ return {
 			cmd = {
 				adapter = "gemini",
 			},
+			tools = {
+				opts = {
+					auto_submit_errors = true,
+					auto_submit_success = true,
+				},
+			},
+		},
+
+		send = {
+			callback = function(chat)
+				vim.cmd("stopinsert")
+				chat:submit()
+				chat:add_buf_message({ role = "llm", content = "" })
+			end,
+			index = 1,
+			description = "Send",
 		},
 
 		extensions = {
@@ -94,10 +122,10 @@ return {
 		-- CodeCompanion Extensions
 		"ravitemer/codecompanion-history.nvim",
 	},
-	-- config = function(_, opts)
-	-- 	require("codecompanion").setup(opts)
-	-- 	require("jose.plugins.ai.codecompanion.plugins.extmarks").setup()
-	-- end,
+	config = function(_, opts)
+		require("codecompanion").setup(opts)
+		require("jose.plugins.ai.codecompanion.plugins.spinner"):init()
+	end,
 	keys = {
 		{
 			"<leader>ac",

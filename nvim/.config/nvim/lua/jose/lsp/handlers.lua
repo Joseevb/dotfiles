@@ -7,6 +7,7 @@ M.map_lsp_key = function(bufnr, mode, lhs, rhs, desc)
 end
 
 M.on_attach_base = function(_, bufnr)
+	print("ATTACHING BASE MAPS")
 	local map_lsp_key = M.map_lsp_key
 
 	-- Common LSP Mappings
@@ -19,7 +20,9 @@ M.on_attach_base = function(_, bufnr)
 		end
 	end, "Hover")
 
-	map_lsp_key(bufnr, "n", "<leader>sd", vim.diagnostic.open_float, "Show Line Diagnostics")
+	map_lsp_key(bufnr, "n", "<leader>sd", function()
+		vim.diagnostic.open_float()
+	end, "Show Line Diagnostics")
 	map_lsp_key(bufnr, "n", "[d", function()
 		vim.diagnostic.jump({ count = -1, float = true })
 	end, "Go to Previous Diagnostic")

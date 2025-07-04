@@ -111,13 +111,22 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+alias open="xdg-open"
 alias vim="nvim"
-alias mvsr="mvn spring-boot:run"
 alias mvci="mvn clean install"
 alias py="/usr/bin/python3.13"
 alias python="/usr/bin/python3.13"
 # format whole java project, execute in project root
 alias jgf='find . -name "*.java" -exec google-java-format -aosp --replace {} +'
+
+# spring aliases
+alias mvsr="mvn spring-boot:run"
+alias mvss="mvn spring-boot:start"
+alias mvsc="mvn spring-boot:stop"
+
+alias lg="lazygit"
+
+alias ldock="lazydocker"
 
 # kill mysql instance
 alias kill_mysql='sudo /etc/init.d/mysql stop'
@@ -173,6 +182,7 @@ tree() {
 
 
 alias ginit='g init && gaa && gcam "initialized project"'
+alias glg="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
 
 if which lazydocker &>/dev/null; then
     alias lazypod='DOCKER_HOST=unix:///mnt/wsl/podman-sockets/podman-machine-default/podman-root.sock lazydocker'
@@ -257,10 +267,15 @@ export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
 export PATH=$JAVA_HOME/bin:$PATH
 # export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/jdtls/lombok.jar"
 
+# Editor
+export EDITOR=nvim
+
 # Nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export COMPOSE_BAKE=true
 
 # Others
 export PATH="$HOME/bin:$PATH"
@@ -352,3 +367,7 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
+add-zsh-hook chpwd tmux-git-autofetch
+    

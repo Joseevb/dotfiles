@@ -3,6 +3,6 @@ require("full-border"):setup({
 	type = ui.Border.ROUNDED,
 })
 
-require("auto-layout"):setup()
+-- require("auto-layout"):setup()
 
-require("yaziline"):setup()
+-- require("yaziline"):setup()

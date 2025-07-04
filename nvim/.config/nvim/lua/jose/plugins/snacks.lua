@@ -7,7 +7,12 @@ return {
 		animate = { enabled = true },
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-		explorer = { enabled = true, replace_netrw = true },
+		explorer = {
+			enabled = true,
+			replace_netrw = true,
+			hidden = true,
+			ignored = true,
+		},
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = {
