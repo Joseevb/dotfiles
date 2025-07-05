@@ -115,7 +115,7 @@ return {
 			desc = "Grep",
 		},
 		{
-			"<leader>sw",
+			"<leader>fw",
 			function()
 				Snacks.picker.grep_word()
 			end,

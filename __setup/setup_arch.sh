@@ -48,7 +48,6 @@ install_packages() {
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
-
 # Function to install Homebrew
 install_homebrew() {
     if ! command -v brew &> /dev/null; then

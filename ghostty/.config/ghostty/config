@@ -1,11 +1,10 @@
 theme = catppuccin-macchiato
 background-opacity=0.9
 
-
 confirm-close-surface = false
 fullscreen = false
 
 keybind = ctrl+shift+alt+enter=toggle_fullscreen 
 keybind = ctrl+enter=unbind
 
-font-family = "CaskaydiaCove Nerd Font"
+font-family = "FiraCode Nerd Font Propo"
