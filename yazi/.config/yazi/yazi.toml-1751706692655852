@@ -1,0 +1,24 @@
+[manager]
+show_hidden = true
+ratio = [25, 20, 55]
+mouse_events = ["click", "scroll", "touch", "move", "drag"]
+
+[preview]
+wrap = "yes"
+
+[plugin]
+prepend_previewers = [
+  { name = "*.csv", run = "duckdb" },
+  { name = "*.tsv", run = "duckdb" },
+  { name = "*.json", run = "duckdb" },
+  { name = "*.parquet", run = "duckdb" },
+  {name = "*/", run = "eza-preview"}
+]
+
+prepend_preloaders = [  
+  { name = "*.csv", run = "duckdb", multi = false },
+  { name = "*.tsv", run = "duckdb", multi = false },
+  { name = "*.json", run = "duckdb", multi = false },
+  { name = "*.parquet", run = "duckdb", multi = false },
+]
+
