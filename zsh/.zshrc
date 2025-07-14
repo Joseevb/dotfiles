@@ -302,3 +302,23 @@ autoload -U compinit && compinit
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+<<<<<<< HEAD
+=======
+
+tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
+add-zsh-hook chpwd tmux-git-autofetch
+    
+
+# bun completions
+[ -s "/home/jose/.bun/_bun" ] && source "/home/jose/.bun/_bun"
+
+# in your .bashrc/.zshrc/*rc
+alias bathelp='bat --plain --language=help'
+help() {
+    "$@" --help 2>&1 | bathelp
+}
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+>>>>>>> 3f7a79d (refactor -> refactored nvim-lspconfig mason-lspconfig configuration (again) to fix a small issue with tsx files)
