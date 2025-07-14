@@ -19,10 +19,8 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		-- mason.nvim and mason-lspconfig.nvim are now dependencies of mason.nvim plugin definition
 		"saghen/blink.cmp",
 		{ "folke/neodev.nvim", opts = {} },
 		"nvim-lua/plenary.nvim",
 	},
-	-- No opts or config table here, as server specific setup is now handled in mason.lua
 }
