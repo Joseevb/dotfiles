@@ -6,7 +6,7 @@ return {
 		"ibhagwan/fzf-lua", -- optional
 	},
 	opts = {
-		ls_path = "~/.vscode/extensions/vmware.vscode-spring-boot-1.62.0/language-server",
+		-- ls_path = "~/.vscode/extensions/vmware.vscode-spring-boot-1.62.0/language-server/spring-boot-language-server-1.62.0-SNAPSHOT-exec.jar",
 		jdtls_name = "jdtls",
 		log_file = vim.fn.stdpath("cache") .. "/spring-boot.log",
 	},
