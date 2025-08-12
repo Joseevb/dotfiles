@@ -100,7 +100,6 @@ for k, v in pairs(servers) do
 	table.insert(server_names, k)
 	if type(v) == "table" and next(v) then
 		vim.lsp.config(k, v)
-		print("Mason: Configuring " .. k .. " with options: " .. vim.inspect(v))
 	end
 end
 

@@ -5,4 +5,4 @@ require("full-border"):setup({
 
 -- require("auto-layout"):setup()
 
--- require("yaziline"):setup()
+require("yaziline"):setup()
