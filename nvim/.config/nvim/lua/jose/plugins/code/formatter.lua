@@ -21,7 +21,7 @@ return {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			php = { "prettier", "pretty-php" },
-			java = { "google-java-format-aosp" },
+			java = { "google-java-format" },
 		},
 		formatters = {
 			-- Copy your full formatters table here

@@ -112,13 +112,7 @@ function M:peek(job)
 			table.insert(args, "--dereference")
 		end
 	end
-<<<<<<< HEAD
 	local child = Command("eza"):arg(args):stdout(Command.PIPED):stderr(Command.PIPED):spawn()
-=======
-
-	local child = Command("eza"):args(args):stdout(Command.PIPED):stderr(Command.PIPED):spawn()
-
->>>>>>> 2bd7365 (some changes in hyprland and waybar)
 	local limit = job.area.h
 	local lines = ""
 	local num_lines = 1

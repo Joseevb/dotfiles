@@ -4,7 +4,7 @@
 vim.opt.nu = true -- Show line number
 vim.opt.relativenumber = true -- Relative line numbers for easier movement
 
-vim.opt.cursorline = true --- Get Catppuccin palette
+vim.opt.cursorline = true
 
 vim.opt.wrap = true -- Wrap long lines
 vim.opt.linebreak = true -- Break lines at words, not characters
@@ -19,9 +19,9 @@ vim.opt.mouse = "a"
 -- ================================
 -- Tabs and Indentation
 -- ================================
-vim.opt.tabstop = 4 -- Number of spaces for a tab
-vim.opt.softtabstop = 4 -- Spaces per Tab keypress
-vim.opt.shiftwidth = 4 -- Spaces for auto-indent
+vim.opt.tabstop = 2 -- Number of spaces for a tab
+vim.opt.softtabstop = 2 -- Spaces per Tab keypress
+vim.opt.shiftwidth = 2 -- Spaces for auto-indent
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.smarttab = true -- Automatically insert correct number of spaces
 vim.opt.smartindent = true -- Auto-indent new lines
@@ -30,7 +30,7 @@ vim.opt.autoindent = true -- Retain previous line's indentation
 -- ================================
 -- Search Settings
 -- ================================
-vim.opt.hlsearch = false -- Disable search highlighting
+vim.opt.hlsearch = true -- Disable search highlighting
 vim.opt.incsearch = true -- Show matches as you type
 vim.opt.ignorecase = true -- Case insensitive search
 vim.opt.smartcase = true -- Case-sensitive if search query contains uppercase
@@ -119,9 +119,6 @@ vim.opt.isfname:append("@-@") -- Allow "@" in filenames
 
 -- Automatically save changes before switching buffers or exiting
 vim.o.autowriteall = true
-
--- Highlight current search match
-vim.opt.hlsearch = true -- Highlight search matches
 
 -- Split window behavior
 vim.opt.splitright = true -- Open vertical splits to the right

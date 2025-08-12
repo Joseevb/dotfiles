@@ -117,7 +117,8 @@ alias mvci="mvn clean install"
 alias py="/usr/bin/python3.13"
 alias python="/usr/bin/python3.13"
 # format whole java project, execute in project root
-alias jgf='find . -name "*.java" -exec google-java-format -aosp --replace {} +'
+alias gjf='fd -e java -X google-java-format --replace {}'
+alias gjfo='fd -e java -X google-java-format -aosp --replace {}'
 
 # spring aliases
 alias mvsr="mvn spring-boot:run"
@@ -126,7 +127,11 @@ alias mvsc="mvn spring-boot:stop"
 
 alias lg="lazygit"
 
+alias cpf="copyfile"
+
 alias ldock="lazydocker"
+alias dcu="docker compose up"
+alias dcub="docker compose up --build"
 
 # kill mysql instance
 alias kill_mysql='sudo /etc/init.d/mysql stop'
@@ -134,7 +139,6 @@ alias kill_mysql='sudo /etc/init.d/mysql stop'
 alias tm='tmux'
 
 # search files in the currently open folder with fd and fzf, and open it in vim
-# must install fd first using `sudo apt install fd-find` and then `ln -s $(which fdfind) ~/.local/bin/fd`
 alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim"
 
 alias ls="eza --icons=always -s=type"
@@ -188,12 +192,15 @@ alias glg="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blu
 bindkey -v
 
 # tmux
-export TERM="xterm-256color"
+export TERM=xterm-256color
 export PATH="$PATH:$HOME/.local/bin"
 export tmux="tmux -u"
 
 # Oh-my-posh
-eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
+# eval "$(oh-my-posh init zsh --config ~/.cache/oh-my-posh/themes/catppuccin_macchiato.omp.json)"
+
+# Starship
+eval "$(starship init zsh)"
 
 # Fzf
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

@@ -7,7 +7,7 @@ vim.g.mapleader = " " -- Set leader key to space
 -- General Mappings
 -- ================================
 
-vim.keymap.set("n", "<C-c>", "<Esc>:noh<CR>", { desc = "Escape key alternative" })
+vim.keymap.set("n", "<C-c>", "<Esc>:noh<CR>", { desc = "Escape key alternative", silent = true })
 
 -- Line Movement in Visual Mode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down in visual mode" })
