@@ -41,28 +41,28 @@ return {
 
 		-- Navgation: Use the local require("harpoon") variable
 		{
-			"<C-A-h>",
+			"<A-h>",
 			function()
 				require("harpoon"):list():select(1)
 			end,
 			desc = "Harpoon File 1",
 		},
 		{
-			"<C-A-j>",
+			"<A-j>",
 			function()
 				require("harpoon"):list():select(2)
 			end,
 			desc = "Harpoon File 2",
 		},
 		{
-			"<C-A-k>",
+			"<A-k>",
 			function()
 				require("harpoon"):list():select(3)
 			end,
 			desc = "Harpoon File 3",
 		},
 		{
-			"<C-A-l>",
+			"<A-l>",
 			function()
 				require("harpoon"):list():select(4)
 			end,
@@ -85,7 +85,6 @@ return {
 			desc = "Harpoon Next",
 		},
 
-		-- Harpoon UI Menu: Use the local require("harpoon") variable
 		{
 			"<leader>hm",
 			function()

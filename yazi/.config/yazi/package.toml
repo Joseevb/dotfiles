@@ -5,17 +5,17 @@ hash = "87b9233a74325e95011670ed20bbd0d4"
 
 [[plugin.deps]]
 use = "ahkohd/eza-preview"
-rev = "b114b01"
-hash = "7676d7da18953f4351048004ab45f0f4"
+rev = "43913fa"
+hash = "931a7f3452f74c1f1f499357002a1cae"
 
 [[plugin.deps]]
 use = "josephschmitt/auto-layout"
-rev = "626a601"
-hash = "747a700c90fffc5b187a6094fd0661b0"
+rev = "c8a3d8d"
+hash = "94e76cea86ef32b9b73c56d3e3f5120d"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "b886025"
+rev = "e95c7b3"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
@@ -25,15 +25,15 @@ hash = "1cd2446f8976eb11e549612fd80e3645"
 
 [[plugin.deps]]
 use = "boydaihungst/restore"
-rev = "84f1921"
-hash = "355f163cb374b5c9514aee2b64121678"
+rev = "2a2ba2f"
+hash = "12d8576d0cb8355a7e15d622913eb250"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "d3fd3a5"
-hash = "e6c5beeb1da3199355734273ee452a7f"
+rev = "9cd2ac4"
+hash = "bc3478e46ebfc411d611e1ccaf04d26a"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "d3fd3a5"
-hash = "288a0dedd5d13b28605cf82c05326dcd"
+rev = "9cd2ac4"
+hash = "f54b45bdd33f607ddde47f0afad96142"

@@ -144,6 +144,9 @@ alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nv
 alias ls="eza --icons=always -s=type"
 alias l="ls -1"
 
+# see wtf is using a port
+alias wtf="lsof -i tcp:$1"
+
 # alias tree="l -T"
 
 tree() {
@@ -239,7 +242,7 @@ export COMPOSE_BAKE=true
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 
-autoload -U compinit && compinit
+fpath+=~/.zfunc
 
 # Yazi
 function y() {
@@ -293,6 +296,8 @@ esac
 
 tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
 add-zsh-hook chpwd tmux-git-autofetch
+
+autoload -U compinit && compinit
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

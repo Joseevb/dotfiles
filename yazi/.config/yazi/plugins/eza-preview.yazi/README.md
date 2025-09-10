@@ -65,7 +65,13 @@ require("eza-preview"):setup({
   dereference = false,
 
   -- Show hidden files (default: true) 
-  all = true
+  all = true,
+
+  -- Ignore files matching patterns (default: {})
+  -- ignore_glob = "*.log"
+  -- ignore_glob = { "*.tmp", "node_modules", ".git", ".DS_Store" }
+  -- SEE: https://www.linuxjournal.com/content/pattern-matching-bash to learn about glob patterns
+  ignore_glob = {}
 })
 
 -- Or use default settings
@@ -87,4 +93,3 @@ Feel free to contribute by opening issues or submitting pull requests!
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
