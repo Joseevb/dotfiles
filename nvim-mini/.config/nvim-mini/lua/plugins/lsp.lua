@@ -1,0 +1,13 @@
+return {
+	{
+		src = "https://github.com/mason-org/mason.nvim",
+		opts = {},
+		setup_name = "mason",
+	},
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim", setup_name = "mason-lspconfig" },
+	{
+		src = "https://github.com/JavaHello/spring-boot.nvim",
+		setup_name = "spring_boot",
+	},
+}
