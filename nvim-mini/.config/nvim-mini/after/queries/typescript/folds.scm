@@ -1,2 +1,2 @@
-;; fold.scm
+;; extends
 (import_statement) @fold
