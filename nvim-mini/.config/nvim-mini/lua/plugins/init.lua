@@ -32,11 +32,24 @@ end
 
 function M.setup()
 	-- First pass: install all plugins
-	local plugins = load_plugin_configs()
-	for _, plugin in ipairs(plugins) do
-		vim.pack.add({ plugin.src })
+	local loaded_plugins = load_plugin_configs()
+
+	local plugins = {}
+	local plugin_names = {}
+	local deferred_plugins = {}
+	local deferred_plugin_names = {}
+
+	for _, plugin in ipairs(loaded_plugins) do
+		if plugin.defer == true then
+			table.insert(deferred_plugins, plugin)
+			table.insert(deferred_plugin_names, plugin)
+		else
+			table.insert(plugins, plugin)
+			table.insert(plugin_names, plugin)
+		end
 	end
 
+	vim.pack.add(plugin_names)
 	-- Second pass: configure plugins
 	vim.schedule(function()
 		for _, plugin in ipairs(plugins) do
@@ -113,9 +126,47 @@ function M.setup()
 						print("Failed to require " .. plugin.setup_name)
 					end
 				end
+				if plugin.defer then
+					table.insert(deferred_plugins, plugin)
+				end
 			end
 		end
 	end)
+
+	-- Third pass: load deferred plugins
+	vim.defer_fn(function()
+		vim.pack.add(deferred_plugin_names)
+		for _, plugin in ipairs(deferred_plugins) do
+			if plugin.setup_name then
+				local ok, module = pcall(require, plugin.setup_name)
+				if ok then
+					if plugin.opts then
+						local opts = plugin.opts
+
+						if type(opts) == "function" then
+							local success, result = pcall(opts)
+							if success then
+								opts = result
+							else
+								print(
+									"Error calling opts function for " .. plugin.setup_name .. ": " .. tostring(result)
+								)
+								opts = {}
+							end
+						end
+
+						vim.defer_fn(function()
+							module.setup(opts)
+						end, 100)
+					elseif type(module.setup) == "function" then
+						module.setup({})
+					end
+				else
+					print("Failed to require " .. plugin.setup_name)
+				end
+			end
+		end
+	end, 100)
 end
 
 return M

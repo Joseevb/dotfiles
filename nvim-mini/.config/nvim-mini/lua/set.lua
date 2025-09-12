@@ -21,18 +21,18 @@ vim.o.showtabline = 1
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldmethod = "expr"
 
-vim.o.foldtext = "v:lua.custom_fold_text()"
-function _G.custom_fold_text()
-	local line = vim.fn.getline(vim.v.foldstart)
-	local num_lines = vim.v.foldend - vim.v.foldstart + 1
-
-	-- Detect if fold starts with import
-	if line:match("^%s*import") or line:match("^%s*from") then
-		return " Imports … [" .. num_lines .. " lines]"
-	end
-
-	return string.format(" %s … [%d lines]", line:gsub("^%s*", ""), num_lines)
-end
+-- vim.o.foldtext = "v:lua.custom_fold_text()"
+-- function _G.custom_fold_text()
+-- 	local line = vim.fn.getline(vim.v.foldstart)
+-- 	local num_lines = vim.v.foldend - vim.v.foldstart + 1
+--
+-- 	-- Detect if fold starts with import
+-- 	if line:match("^%s*import") or line:match("^%s*from") then
+-- 		return " Imports … [" .. num_lines .. " lines]"
+-- 	end
+--
+-- 	return string.format(" %s … [%d lines]", line:gsub("^%s*", ""), num_lines)
+-- end
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
