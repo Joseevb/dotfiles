@@ -8,15 +8,15 @@ local lsp_configurations = {
 			},
 		},
 	},
-	jdtls = {
-		cmd = {
-			"jdtls",
-			"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/share/jdtls/lombok.jar")),
-		},
-		init_options = {
-			bundles = require("spring_boot").java_extensions(),
-		},
-	},
+	-- jdtls = {
+	-- 	cmd = {
+	-- 		"jdtls",
+	-- 		"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/packages/lombok-nightly/lombok.jajkkk")),
+	-- 	},
+	-- 	init_options = {
+	-- 		bundles = require("spring_boot").java_extensions(),
+	-- 	},
+	-- },
 }
 
 -- Custom configuration for LSPs

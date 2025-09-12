@@ -38,3 +38,9 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
 vim.g.mapleader = " "
+
+vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "DiagnosticError", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointCondition", { text = "🔵", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+vim.fn.sign_define("DapBreakpointRejected", { text = "🚫", texthl = "DiagnosticError", linehl = "", numhl = "" })
+vim.fn.sign_define("DapLogPoint", { text = "📝", texthl = "DiagnosticSignInfo", linehl = "", numhl = "" })
+vim.fn.sign_define("DapStopped", { text = "▶️", texthl = "DiagnosticSignWarn", linehl = "", numhl = "" })

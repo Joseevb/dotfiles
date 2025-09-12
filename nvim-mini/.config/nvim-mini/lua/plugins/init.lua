@@ -23,8 +23,6 @@ local function load_plugin_configs()
 				else
 					table.insert(plugins, plugin_config)
 				end
-			elseif not ok then
-				print("Error requiring " .. filename .. ": " .. tostring(plugin_config))
 			end
 		end
 	end
@@ -101,6 +99,15 @@ function M.setup()
 							module.setup(opts)
 						elseif type(module.setup) == "function" then
 							module.setup({})
+						end
+
+						if plugin.post_config then
+							local success, result = pcall(plugin.post_config)
+							if success then
+								print("Successfully ran post_config for " .. plugin.setup_name)
+							else
+								print("Error running post_config for " .. plugin.setup_name .. ": " .. tostring(result))
+							end
 						end
 					else
 						print("Failed to require " .. plugin.setup_name)

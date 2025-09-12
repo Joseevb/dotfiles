@@ -6,7 +6,7 @@ map("n", "<leader>sw", "<cmd>FzfLua grep_cword<CR>", { desc = "Search word" })
 map("n", "<leader>sW", "<cmd>FzfLua grep_cWORD<CR>", { desc = "Search word under cursor" })
 map("n", "<leader>sf", "<cmd>FzfLua files<CR>", { desc = "Search files" })
 map("n", "<leader>sb", "<cmd>FzfLua buffers<CR>", { desc = "Search buffers" })
-map("n", "<leader>sz", "<cmd>FzfLua zoxide<CR>", { desc = "Search buffers" })
+map("n", "<leader>sz", "<cmd>FzfLua zoxide<CR>", { desc = "Search zoxide" })
 map("x", "<C-p>", [["_dP]], { desc = "Paste without overwriting clipboard" })
 map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard" })
 map({ "n", "v" }, "<leader>Y", '"+Y', { desc = "Yank line to system clipboard" })
@@ -56,3 +56,12 @@ function _G.peek_fold()
 end
 
 map("n", "zp", _G.peek_fold, { desc = "Preview fold" })
+map("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Toggle UndoTree" })
+
+-- DAP
+map("n", "<leader>du", function()
+	require("dapui").toggle({})
+end, { desc = "DAP: Toggle DAP UI" })
+map({ "n", "v" }, "<leader>de", function()
+	require("dapui").eval()
+end, { desc = "DAP: Eval" })

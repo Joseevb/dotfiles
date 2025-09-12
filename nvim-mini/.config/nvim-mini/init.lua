@@ -5,10 +5,16 @@ if not package.path:find(lua_path, 1, true) then
 end
 
 require("plugins").setup()
-require("set")
-require("lsp")
-require("maps")
-require("autocmd")
+
+vim.schedule(function()
+	require("set")
+	require("lsp")
+	require("maps")
+	require("autocmd")
+
+	-- idk why it doesn't load normally
+	require("mini.tabline").setup({})
+end)
 
 -- colorscheme
 vim.cmd.colorscheme("catppuccin")

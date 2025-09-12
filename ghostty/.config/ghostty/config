@@ -3,6 +3,9 @@ shell-integration = zsh
 mouse-hide-while-typing = true
 scrollback-limit = 1000000
 
+background-opacity = 0.85
+background-blur = true
+
 confirm-close-surface = false
 fullscreen = false
 link-url = true
