@@ -8,15 +8,9 @@ local lsp_configurations = {
 			},
 		},
 	},
-	-- jdtls = {
-	-- 	cmd = {
-	-- 		"jdtls",
-	-- 		"--jvm-arg=" .. string.format("-javaagent:%s", vim.fn.expand("$MASON/packages/lombok-nightly/lombok.jajkkk")),
-	-- 	},
-	-- 	init_options = {
-	-- 		bundles = require("spring_boot").java_extensions(),
-	-- 	},
-	-- },
+	emmet_language_server = {
+		filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	},
 }
 
 -- Custom configuration for LSPs

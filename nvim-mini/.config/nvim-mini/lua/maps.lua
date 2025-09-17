@@ -65,3 +65,13 @@ end, { desc = "DAP: Toggle DAP UI" })
 map({ "n", "v" }, "<leader>de", function()
 	require("dapui").eval()
 end, { desc = "DAP: Eval" })
+
+map("n", "<leader>dc", ":DapContinue<CR>", { desc = "DAP: Continue" })
+map("n", "<leader>db", ":DapToggleBreakpoint<CR>", { desc = "DAP: Breakpoint" })
+map("n", "<leader>dB", ":DapToggleBreakpointCondition<CR>", { desc = "DAP: Breakpoint condition" })
+map("n", "<leader>dr", ":DapRestart<CR>", { desc = "DAP: Restart" })
+map("n", "<leader>dt", ":DapTerminate<CR>", { desc = "DAP: Terminate" })
+
+-- Project selector
+
+vim.keymap.set("n", "<leader>sp", ":FzfProjects<CR>", { desc = "Find Projects" })

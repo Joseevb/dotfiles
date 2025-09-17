@@ -20,7 +20,7 @@ success_symbol = "[❯](fg:blue) "
 vicmd_symbol = "[❮ ](bold fg:green)"
 
 [cmd_duration]
-format = "[  $duration]($style)"
+format = "[](fg:blue bg:teal)[  $duration]($style)[](fg:teal bg:blue)"
 min_time = 2500
 min_time_to_notify = 60000
 show_notifications = false
@@ -72,7 +72,7 @@ nix-config = "󱄅 "
 allowed_msg = ""
 denied_msg = ""
 disabled = false
-format = "[ $loaded]($style)"
+format = "[](fg:blue bg:teal)[ $loaded]($style)[](fg:teal bg:blue)"
 loaded_msg = "󰐍"
 not_allowed_msg = ""
 style = "fg:base bg:teal"
@@ -100,7 +100,7 @@ style = "fg:base bg:peach"
 symbol = " "
 
 [git_branch]
-format = "[ $symbol $branch]($style)"
+format = "[ $symbol$branch]($style)"
 style = "fg:base bg:peach"
 symbol = " "
 
@@ -148,7 +148,7 @@ style = "fg:base bg:peach"
 symbol = "󰬷 "
 
 [jobs]
-format = "[ $symbol $number]($style)"
+format = "[](fg:blue bg:teal)[ $symbol $number]($style)[](fg:teal bg:blue)"
 style = "fg:base bg:teal"
 symbol = "󰣖 "
 

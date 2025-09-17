@@ -4,6 +4,8 @@ if not package.path:find(lua_path, 1, true) then
 	package.path = package.path .. ";" .. lua_path
 end
 
+_G.CONFIG_PATH = config_path
+
 require("plugins").setup()
 
 vim.schedule(function()

@@ -131,6 +131,7 @@ alias cpf="copyfile"
 
 alias ldock="lazydocker"
 alias dcu="docker compose up"
+alias dcd="docker compose down"
 alias dcub="docker compose up --build"
 
 # kill mysql instance
@@ -144,49 +145,7 @@ alias sf="fd --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nv
 alias ls="eza --icons=always -s=type"
 alias l="ls -1"
 
-# see wtf is using a port
-alias wtf="lsof -i tcp:$1"
-
-# alias tree="l -T"
-
-tree() {
-    local ignore_patterns=()
-    local args=()
-    local show_hidden=false
-
-    while [[ $# -gt 0 ]]; do
-        case "$1" in
-            -i)
-                shift
-                # Grab ignore patterns until the next flag or end of arguments
-                while [[ $# -gt 0 && "$1" != -* ]]; do
-                    ignore_patterns+=("$1")
-                    shift
-                done
-                ;;
-            -a)
-                show_hidden=true
-                shift
-                ;;
-            *)
-                args+=("$1")
-                shift
-                ;;
-        esac
-    done
-
-    # Build the eza command
-    local eza_cmd=(eza -T)
-
-    [[ "$show_hidden" == true ]] && eza_cmd+=(-a)
-    [[ ${#ignore_patterns[@]} -gt 0 ]] && eza_cmd+=(-I "$(IFS='|'; echo "${ignore_patterns[*]}")")
-    [[ ${#args[@]} -gt 0 ]] && eza_cmd+=("${args[@]}")
-
-    # Run the command
-    echo "${eza_cmd[@]}"
-    "${eza_cmd[@]}"
-}
-
+alias tree="l -T"
 
 alias ginit='g init && gaa && gcam "initialized project"'
 alias glg="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
@@ -236,11 +195,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export COMPOSE_BAKE=true
-
 # Others
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
+export COMPOSE_BAKE=true
 
 fpath+=~/.zfunc
 
@@ -273,9 +231,6 @@ fastfetch
 tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
 add-zsh-hook chpwd tmux-git-autofetch
 
-# bun completions
-[ -s "/home/jose/.bun/_bun" ] && source "/home/jose/.bun/_bun"
-
 # in your .bashrc/.zshrc/*rc
 alias bathelp='bat --plain --language=help'
 help() {
@@ -294,28 +249,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
-add-zsh-hook chpwd tmux-git-autofetch
-
 autoload -U compinit && compinit
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-tmux-git-autofetch() {(/home/jose/.tmux/plugins/tmux-git-autofetch/git-autofetch.tmux --current &)}
-add-zsh-hook chpwd tmux-git-autofetch
-    
 
 # bun completions
 [ -s "/home/jose/.bun/_bun" ] && source "/home/jose/.bun/_bun"
 
-# in your .bashrc/.zshrc/*rc
-alias bathelp='bat --plain --language=help'
-help() {
-    "$@" --help 2>&1 | bathelp
-}
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

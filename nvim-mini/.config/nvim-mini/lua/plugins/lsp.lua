@@ -8,9 +8,6 @@ local function get_sdkman_current_jdk_info()
 		if major_version_match then
 			local major_version = major_version_match:match('"(%d+)')
 			if major_version then
-				print(
-					"SDKMAN: Detected active JDK from JAVA_HOME: " .. java_home_path .. ", version: " .. major_version
-				)
 				return {
 					name = "JavaSE-" .. major_version,
 					path = java_home_path,
