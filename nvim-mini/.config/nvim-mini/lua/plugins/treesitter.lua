@@ -1,7 +1,7 @@
 return {
 	{
 		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		defer = true,
+		lazy = true,
 		setup_name = "nvim-treesitter.configs",
 		opts = {
 			ensure_installed = {
@@ -32,5 +32,5 @@ return {
 			},
 		},
 	},
-	{ src = "https://github.com/windwp/nvim-ts-autotag", setup_name = "nvim-ts-autotag", defer = true },
+	{ src = "https://github.com/windwp/nvim-ts-autotag", setup_name = "nvim-ts-autotag", lazy = true },
 }

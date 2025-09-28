@@ -17,6 +17,9 @@ return {
 				--- @type  "internal" | "mini" | "devicons"
 				icon_provider = "mini", -- "mini" or "devicons"
 			},
+			experimental = {
+				check_rtp_message = false,
+			},
 		},
 	},
 }

@@ -22,4 +22,46 @@ return {
 			end,
 		},
 	},
+
+	-- avante
+
+	-- deps
+	{
+
+		src = "https://github.com/HakonHarnes/img-clip.nvim",
+		setup_name = "img-clip",
+		opts = {
+			default = {
+				embed_image_as_base64 = false,
+				prompt_for_file_name = false,
+				drag_and_drop = {
+					insert_mode = true,
+				},
+				-- required for Windows users
+				use_absolute_path = true,
+			},
+		},
+	},
+
+	-- avante main plugin
+	{
+		src = "https://github.com/yetone/avante.nvim",
+		setup_name = "avante",
+		build = vim.fn.has("win32") ~= 0
+				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+			or "make",
+		opts = {
+			input = {
+				provider = "native",
+			},
+			provider = "gemini",
+			providers = {
+				gemini = {
+					endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+					model = "gemini-2.5-flash",
+				},
+			},
+		},
+		lazy = true,
+	},
 }

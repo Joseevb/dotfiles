@@ -30,6 +30,56 @@ local function load_plugin_configs()
 	return plugins
 end
 
+local function run_build_command(plugin, plugin_path)
+	if not plugin.build then
+		return
+	end
+
+	local build_cmd = plugin.build
+	if type(build_cmd) == "function" then
+		local ok, result = pcall(build_cmd)
+		if not ok then
+			print("Error running build function for " .. (plugin.setup_name or "unknown") .. ": " .. tostring(result))
+		end
+		return
+	end
+
+	-- Handle string build commands
+	if type(build_cmd) == "string" then
+		-- Change to plugin directory for build
+		local original_cwd = vim.fn.getcwd()
+		vim.fn.chdir(plugin_path)
+
+		local handle = io.popen(build_cmd .. " 2>&1")
+		if handle then
+			local output = handle:read("*a")
+			local success = handle:close()
+
+			-- Restore original directory
+			vim.fn.chdir(original_cwd)
+
+			if not success then
+				print("Build failed for " .. (plugin.setup_name or "plugin") .. ":\n" .. output)
+			end
+		else
+			vim.fn.chdir(original_cwd)
+			print("Failed to execute build command for " .. (plugin.setup_name or "plugin"))
+		end
+	end
+end
+
+local function get_plugin_path(plugin_src)
+	-- Extract plugin name from src URL
+	local plugin_name = plugin_src:match("([^/]+)%.git$") or plugin_src:match("([^/]+)$")
+	if plugin_name:match("%.nvim$") then
+		plugin_name = plugin_name:match("(.+)%.nvim$")
+	end
+
+	-- Construct the path where vim.pack would install the plugin
+	local pack_path = vim.fn.stdpath("data") .. "/site/pack/core/opt/" .. plugin_name .. ".nvim"
+	return pack_path
+end
+
 function M.setup()
 	-- First pass: install all plugins
 	local loaded_plugins = load_plugin_configs()
@@ -50,6 +100,19 @@ function M.setup()
 	end
 
 	vim.pack.add(plugin_names)
+
+	-- Run build commands for plugins that need them
+	vim.schedule(function()
+		for _, plugin in ipairs(plugins) do
+			if plugin.build then
+				local plugin_path = get_plugin_path(plugin.src)
+				if vim.fn.isdirectory(plugin_path) == 1 then
+					run_build_command(plugin, plugin_path)
+				end
+			end
+		end
+	end)
+
 	-- Second pass: configure plugins
 	vim.schedule(function()
 		for _, plugin in ipairs(plugins) do
@@ -116,9 +179,7 @@ function M.setup()
 
 						if plugin.post_config then
 							local success, result = pcall(plugin.post_config)
-							if success then
-								print("Successfully ran post_config for " .. plugin.setup_name)
-							else
+							if not success then
 								print("Error running post_config for " .. plugin.setup_name .. ": " .. tostring(result))
 							end
 						end
@@ -136,6 +197,18 @@ function M.setup()
 	-- Third pass: load deferred plugins
 	vim.defer_fn(function()
 		vim.pack.add(deferred_plugin_names)
+
+		-- Run build commands for deferred plugins
+		for _, plugin in ipairs(deferred_plugins) do
+			if plugin.build then
+				local plugin_path = get_plugin_path(plugin.src)
+				if vim.fn.isdirectory(plugin_path) == 1 then
+					run_build_command(plugin, plugin_path)
+				end
+			end
+		end
+
+		-- Configure deferred plugins
 		for _, plugin in ipairs(deferred_plugins) do
 			if plugin.setup_name then
 				local ok, module = pcall(require, plugin.setup_name)

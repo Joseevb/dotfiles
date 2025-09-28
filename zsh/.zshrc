@@ -113,6 +113,7 @@ fi
 
 alias open="xdg-open"
 alias vim="nvim"
+alias vi="bob run nightly -- -u ~/.config/nvim-mini/init.lua"
 alias mvci="mvn clean install"
 alias py="/usr/bin/python3.13"
 alias python="/usr/bin/python3.13"

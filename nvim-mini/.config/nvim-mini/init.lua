@@ -13,8 +13,9 @@ vim.schedule(function()
 	require("lsp")
 	require("maps")
 	require("autocmd")
+	vim.o.showtabline = 2
 end)
 
 -- colorscheme
 vim.cmd.colorscheme("catppuccin")
-vim.o.showtabline = 2
+require("mini.tabline")

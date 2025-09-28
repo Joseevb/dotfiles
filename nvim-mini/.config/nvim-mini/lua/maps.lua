@@ -75,3 +75,6 @@ map("n", "<leader>dt", ":DapTerminate<CR>", { desc = "DAP: Terminate" })
 -- Project selector
 
 vim.keymap.set("n", "<leader>sp", ":FzfProjects<CR>", { desc = "Find Projects" })
+
+-- WinResizer
+vim.keymap.set("n", "<leader>R", ":WinResizerStartResize<CR>", { desc = "Enter resize mode" })
