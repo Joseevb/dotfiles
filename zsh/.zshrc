@@ -111,8 +111,16 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-alias open="xdg-open"
+open() {
+    if [ $# -eq 0 ]; then
+        nohup xdg-open . >/dev/null 2>&1 &
+    else
+        nohup xdg-open "$1" >/dev/null 2>&1 &
+    fi
+    disown  # Detaches the last background job (the & one)
+}
 alias vim="nvim"
+alias vi="bob run nightly -- -u /home/jose/.config/nvim-mini/init.lua"
 alias mvci="mvn clean install"
 alias py="/usr/bin/python3.13"
 alias python="/usr/bin/python3.13"

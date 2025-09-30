@@ -85,7 +85,7 @@ return {
 			},
 		},
 		post_config = function()
-			require("lspconfig").jdtls.setup({
+			vim.lsp.config("jdtls", {
 				settings = {
 					java = {
 						configuration = {
@@ -94,7 +94,6 @@ return {
 					},
 				},
 			})
-			print("Configuring nvim-java")
 		end,
 	},
 
