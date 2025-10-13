@@ -14,7 +14,9 @@ return {
 	{ "simeji/winresizer", keys = { { "<leader>R", ":WinResizerStartResize<CR>", desc = "Enter resize mode" } } },
 	{
 		"dmtrKovalenko/fold-imports.nvim",
-		opts = {},
+		opts = {
+			custom_fold_text = false,
+		},
 		event = "BufEnter",
 	},
 	{

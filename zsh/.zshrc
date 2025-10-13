@@ -161,6 +161,8 @@ alias glg="g log --graph --abbrev-commit --decorate --format=format:'%C(bold blu
 # Enable vim in cli
 bindkey -v
 
+export TERMINAL=ghostty
+
 # tmux
 export TERM=xterm-256color
 export PATH="$PATH:$HOME/.local/bin"
