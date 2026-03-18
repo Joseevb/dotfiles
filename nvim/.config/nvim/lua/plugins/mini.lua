@@ -1,7 +1,52 @@
 return {
 	{ "nvim-mini/mini.tabline", version = false, opts = {} },
 	{ "nvim-mini/mini-git", version = false, main = "mini.git", opts = {} },
-	{ "nvim-mini/mini.statusline", version = false, opts = {} },
+	{
+		"nvim-mini/mini.statusline",
+		version = false,
+		opts = {},
+		config = function()
+			-- Get only the filename (tail of the path)
+			local get_filename_only = function()
+				local path = vim.api.nvim_buf_get_name(0)
+				return vim.fn.fnamemodify(path, ":t") or "[No Name]"
+			end
+
+			-- Function to keep the original statusline style
+			local custom_active_content = function()
+				-- ... all original MiniStatusline.section_* calls ...
+				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 120 })
+				local git = MiniStatusline.section_git({ trunc_width = 40 })
+				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
+				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+				local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
+				-- *** The ONLY line that changes from the default content ***
+				local filename = get_filename_only()
+				-- *********************************************************
+				local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 120 })
+				local location = MiniStatusline.section_location({ trunc_width = 75 })
+				local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
+
+				return MiniStatusline.combine_groups({
+					{ hl = mode_hl, strings = { mode } },
+					{ hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+					"%<", -- Mark general truncate point
+					-- Use the MiniStatuslineFilename highlight group to keep the original style
+					{ hl = "MiniStatuslineFilename", strings = { filename } },
+					"%=", -- End left alignment
+					{ hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+					{ hl = mode_hl, strings = { search, location } },
+				})
+			end
+
+			-- Apply the configuration
+			require("mini.statusline").setup({
+				content = {
+					active = custom_active_content,
+				},
+			})
+		end,
+	},
 	{
 		"nvim-mini/mini.snippets",
 		dependencies = {
@@ -18,6 +63,7 @@ return {
 	},
 	{
 		"nvim-mini/mini.completion",
+		enabled = false,
 		dependencies = { "rafamadriz/friendly-snippets" },
 		version = false,
 		opts = {},

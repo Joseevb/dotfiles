@@ -20,6 +20,7 @@ vim.opt.showbreak = "↪ "
 vim.o.showtabline = 1
 vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldmethod = "expr"
+vim.o.winblend = 0
 
 -- vim.o.foldtext = "v:lua.custom_fold_text()"
 -- function _G.custom_fold_text()

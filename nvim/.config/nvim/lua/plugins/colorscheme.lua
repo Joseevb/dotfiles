@@ -13,8 +13,16 @@ return {
 					information = { "undercurl" },
 				},
 			},
+			custom_highlights = function(colors)
+				return {
+					NormalFloat = { bg = colors.none },
+					FloatBorder = { bg = colors.none, fg = colors.blue },
+					FloatTitle = { bg = colors.none },
+				}
+			end,
 			auto_integrations = true,
 			integrations = {
+				blink_cmp = { style = "bordered" },
 				aerial = true,
 				alpha = true,
 				cmp = true,

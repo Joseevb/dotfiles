@@ -122,8 +122,6 @@ open() {
 alias vim="nvim"
 alias vi="bob run nightly -- -u /home/jose/.config/nvim-mini/init.lua"
 alias mvci="mvn clean install"
-alias py="/usr/bin/python3.13"
-alias python="/usr/bin/python3.13"
 # format whole java project, execute in project root
 alias gjf='fd -e java -X google-java-format --replace {}'
 alias gjfo='fd -e java -X google-java-format -aosp --replace {}'
@@ -267,3 +265,8 @@ autoload -U compinit && compinit
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export PATH=$PATH:/home/jose/.spicetify
+
+# opencode
+export PATH=/home/jose/.opencode/bin:$PATH

@@ -65,5 +65,3 @@ function _G.peek_fold()
 end
 
 map("n", "zp", peek_fold, { desc = "Preview fold" })
-
-map("n", "zp", peek_fold, { desc = "Preview fold" })

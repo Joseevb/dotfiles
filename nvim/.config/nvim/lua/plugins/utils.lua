@@ -25,4 +25,10 @@ return {
 		opts = {},
 	},
 	{ "tpope/vim-repeat", event = "VeryLazy" },
+	{
+		"j-hui/fidget.nvim",
+		opts = {},
+	},
+
+	{ "vimpostor/vim-tpipeline" },
 }
