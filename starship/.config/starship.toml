@@ -293,7 +293,7 @@ symbol = " "
 
 [shlvl]
 disabled = false
-format = "[ $symbol]($style)[]"
+format = "[ $symbol]($style)"
 repeat = false
 style = "fg:surface1 bg:teal"
 symbol = "󱆃"

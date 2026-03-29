@@ -169,7 +169,7 @@
       "showNetwork": true,
       "showWifi": true,
       "showBluetooth": true,
-      "showBattery": false,
+      "showBattery": true,
       "showLockStatus": true
     },
     "clock": {
