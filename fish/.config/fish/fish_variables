@@ -11,7 +11,7 @@ SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_f
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish\x1epatrickf1/fzf\x2efish\x1ereitzig/sdkman\x2dfor\x2dfish\x40v2\x2e1\x2e0\x1ejhillyerd/plugin\x2dgit
 SETUVAR _fisher_reitzig_2F_sdkman_2D_for_2D_fish_40_v2_2E_31_2E_30__files:\x7e/\x2econfig/fish/functions/sdk\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sdk\x2efish\x1e\x7e/\x2econfig/fish/completions/sdk\x2efish
 SETUVAR _fisher_upgraded_to_4_4:\x1d
-SETUVAR fish_user_paths:/home/jose/\x2esdkman/candidates/java/current/bin\x1e/home/jose/\x2ebun/bin\x1e/home/jose/scripts\x1e/home/jose/\x2elocal/bin\x1e/home/jose/\x2elocal/share/nvim/mason/bin\x1e/home/jose/\x2eopencode/bin
+SETUVAR fish_user_paths:/home/jose/\x2ecargo/bin\x1e/home/jose/\x2elocal/share/pnpm\x1e/home/jose/\x2esdkman/candidates/java/current/bin\x1e/home/jose/\x2ebun/bin\x1e/home/jose/scripts\x1e/home/jose/\x2elocal/bin\x1e/home/jose/\x2elocal/share/nvim/mason/bin\x1e/home/jose/\x2eopencode/bin
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_check_for_new_release:false
 SETUVAR pure_color_at_sign:pure_color_mute
