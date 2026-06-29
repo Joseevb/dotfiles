@@ -1,0 +1,6 @@
+hl.env("GDK_BACKEND", "wayland,x11")
+hl.env("GBM_BACKEND", "nvidia-drm")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("NVD_BACKEND", "direct")
+-- hl.env("GTK_THEME", "Catppuccin-Mauve-Dark-hdpi")
+hl.env("GTK_THEME", "Catppuccin-Mauve-Dark")
