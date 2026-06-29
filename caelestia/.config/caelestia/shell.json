@@ -48,6 +48,10 @@
         "wallpaperEnabled": true
     },
     "bar": {
+        "activeWindow": {
+            "compact": true,
+            "inverted": true
+        },
         "clock": {
             "showIcon": true
         },
@@ -127,6 +131,7 @@
             "activeTrail": true,
             "capitalisation": "preserve",
             "label": "  ",
+            "maxWindowIcons": 5,
             "occupiedBg": true,
             "occupiedLabel": "󰮯",
             "perMonitorWorkspaces": true,
@@ -170,7 +175,7 @@
                 "mpv"
             ],
             "terminal": [
-                "ghostty"
+                "kitty"
             ]
         },
         "battery": {
