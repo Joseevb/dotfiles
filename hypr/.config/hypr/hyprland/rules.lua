@@ -93,3 +93,9 @@ hl.workspace_rule {
   no_border = true,
   no_rounding = true,
 }
+
+hl.window_rule {
+  match = { class = '^Azahar$' },
+  opacity = '1.0 override 1.0 override 1.0 override',
+  no_dim = true,
+}
